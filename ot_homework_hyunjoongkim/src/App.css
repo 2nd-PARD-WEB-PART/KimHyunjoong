@@ -32,7 +32,7 @@ body {
 
 .imagecenter{             /*이미지를 페이지의 정중앙에 위치 및 둥글게 만들기*/
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
@@ -45,19 +45,36 @@ body {
   width: 300px;
   height: 300px;
   position: absolute;
-  top: 73%;
-  right: 70%;
+  top: 63%;
+  right: 73%;
   transform: translateY(-50%);
   color: white;
 }
 
 .rightalign{              /*텍스트를 오른쪽 정렬 시킴*/
   font-family: 'Ramche';
-  width: 300px;
+  width: 200px;
   height: 300px;
   position: absolute;
-  top: 70%;
+  top: 60%;
   left: 85%;
   transform: translateY(-50%);
   color: white;
+}
+
+.logo{                    /*instagram logo 가운데 중앙 정렬*/
+  width: 30px;
+  height: 30px;
+  margin-left: 49%;
+  display: block;
+  position: relative;
+  bottom: 150px;
+}
+
+.nameContainer{             /*instagram 아이디 표시*/
+  font-family: 'Ramche';
+  color: white;
+  margin-left: 46.5%;
+  position: relative;
+  bottom: 150px;
 }

@@ -1,5 +1,6 @@
 import './App.css';
 import profileImage from './image/profile.JPG' /*이미지 불러오기 및 이름 선언*/
+import instaImage from './image/instagram.png'
 
 function App() {
   return (
@@ -22,6 +23,15 @@ function App() {
         1. 축구 <br></br><br></br>
         2. 여행 <br></br><br></br>
         3. 사랑 <br></br><br></br>
+      </div>
+      <div>
+        <a href="https://www.instagram.com/bbin_guuuu/" target='blank'>    {/*로고 클릭시 새창에서 인스타 페이지 이동*/}
+        <img className='logo' src={instaImage} alt='인스타그램 로고'/>    {/*인스타 로고삽입*/}
+        </a>
+      </div>
+      <div className='nameContainer'>
+        bbin_guuuu<br></br><br></br>
+        ! ! ! 클릭 ! ! !
       </div>
     </div>
   );
