@@ -48,6 +48,7 @@ body {
   top: 73%;
   right: 70%;
   transform: translateY(-50%);
+  color: white;
 }
 
 .rightalign{              /*텍스트를 오른쪽 정렬 시킴*/
@@ -58,4 +59,5 @@ body {
   top: 70%;
   left: 85%;
   transform: translateY(-50%);
+  color: white;
 }
