@@ -1,38 +1,24 @@
 .App {
-  text-align: center;
+  text-align: left;                 /*텍스트 왼쪽 정렬*/
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  text-align: center;               /*내비게이션바 텍스트 왼쪽 정렬*/
+  color: white;                   /*내비게이션바 텍스트 색: 흰색*/
+  background-color: black;        /*내비게이션바 배경색: 검정색*/
+  height: 60px;                     /*내비게이션바 두께 설정*/
+  font-size: 20px;                  /*내비게이션바 텍스트 크기 설정*/
+  line-height: 60px;                /*내비게이션바 텍스트 세로 중앙 정렬*/
+  font-family: 'Ramche';
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: grey;         /*배경색: 회색*/
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: 'Ramche';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Ramche.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }

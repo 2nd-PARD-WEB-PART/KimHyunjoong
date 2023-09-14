@@ -1,24 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
+    <body>                              {/*배경색 추가를 위한 <body>태그 입력*/}
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="navbar">          {/*상단에 내비게이션 바를 위치하여 페이지의 제목 입력*/}
+        <div>
+          현중's 자기소개
+        </div>
+      </div>
     </div>
+    </body>
   );
 }
 
