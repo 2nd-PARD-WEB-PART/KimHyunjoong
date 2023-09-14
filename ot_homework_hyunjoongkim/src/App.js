@@ -1,5 +1,5 @@
 import './App.css';
-import profileImage from './image/profile.png' /*이미지 불러오기 및 이름 선언*/
+import profileImage from './image/profile.JPG' /*이미지 불러오기 및 이름 선언*/
 
 function App() {
   return (
@@ -11,6 +11,17 @@ function App() {
       </div>
       <div className='container'>
         <img className='imagecenter' src={profileImage} alt='프로필사진'/> {/*이미지 넣기*/}
+      </div>
+      <div className='leftalign'>       {/*왼쪽에 이름과 이번학기 목표*/}
+        안녕하세요 저는 김현중입니다! <br></br><br></br>
+        이번학기 저의 목표는 <br></br><br></br>
+        미래에 대한 뚜렷한 방향을 얻는 것입니다.
+      </div>
+      <div className='rightalign'>      {/*오른쪽에 좋아하는 것 3가지*/}
+        좋아하는 것 3가지: <br></br><br></br>
+        1. 축구 <br></br><br></br>
+        2. 여행 <br></br><br></br>
+        3. 사랑 <br></br><br></br>
       </div>
     </div>
   );

@@ -30,10 +30,32 @@ body {
   height: 100vh;
 }
 
-.imagecenter{             /*이미지를 페이지의 정중앙에 위치*/
+.imagecenter{             /*이미지를 페이지의 정중앙에 위치 및 둥글게 만들기*/
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
+  border-radius: 70%;
+  object-fit: cover;
+}
+
+.leftalign{               /*텍스트를 왼쪽 정렬 시킴*/
+  font-family: 'Ramche';
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 73%;
+  right: 70%;
+  transform: translateY(-50%);
+}
+
+.rightalign{              /*텍스트를 오른쪽 정렬 시킴*/
+  font-family: 'Ramche';
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 70%;
+  left: 85%;
+  transform: translateY(-50%);
 }
