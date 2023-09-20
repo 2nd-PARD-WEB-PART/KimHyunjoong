@@ -1,11 +1,11 @@
 import React from "react";
-import './App.css';
+import styled from "styled-components";
+import MyPage from "./MyPage"
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <MyPage />
+
   );
 }
 
