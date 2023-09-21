@@ -1,6 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
 import Profile from "./Profile";
+import Post from "./Post";
+
 
 
 function MyPage() {
@@ -11,11 +13,20 @@ function MyPage() {
                     <img src = {process.env.PUBLIC_URL + '/Logo.svg'} alt = '인스타그램 로고' width = '100vw'/>
                 </LogoDiv>
                 <MenuDiv>
-                <img src = {process.env.PUBLIC_URL + '/Menu-Button.svg'} alt = '메뉴 버튼 이미지' width = '100vw' />
+                <HomeButton>
+                <img src = {process.env.PUBLIC_URL + '/home.svg'} alt = '메뉴 버튼 이미지' width="17vh"/>
+                </HomeButton>
+                <NewButton>
+                <img src = {process.env.PUBLIC_URL + '/NewPosts.svg'} alt = '메뉴 버튼 이미지' width="17vh"/>
+                </NewButton>
+                <ActivityButton>
+                <img src = {process.env.PUBLIC_URL + '/ActivityFeed.svg'} alt = '메뉴 버튼 이미지' width='17vh'/>
+                </ActivityButton>
                 <ProfileImage src = {process.env.PUBLIC_URL + '/profile.jpg'} alt = '프로필 이미지' />
                 </MenuDiv>
             </Row1>
             <Profile />
+            <Post />
         </div>
     );
 }
@@ -41,10 +52,29 @@ const LogoDiv = styled.div `    //인스타그램 로고 아이콘 왼쪽정렬 
     height: auto;
 `;
 
+const HomeButton = styled.button `   //홈버튼
+    bottom: 37%;
+    position: relative;
+    background-color: white;
+    border: solid white;
+`;
+const NewButton = styled.button `   //새로운 포스트 버튼
+    bottom: 37%;
+    position: relative;
+    background-color: white;
+    border: solid white;
+`;
+const ActivityButton = styled.button `   //액티비티 버튼
+    bottom: 37%;
+    position: relative;
+    background-color: white;
+    border: solid white;
+`;
 const ProfileImage = styled.img `   //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
-    width: 2vh;
-    height: 2vh;
-    bottom: 32%;
+    width: 2.6vh;
+    height: 2.6vh;
+    bottom: 31%;
+    margin-left: 7px;
     position: absolute;
     border-radius: 22px;
 `;
