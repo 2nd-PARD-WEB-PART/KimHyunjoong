@@ -9,7 +9,11 @@ function Profile() {
             </Column1>
             <Column2>
                 <InnerRow1>
-                    안녕하세요
+                    <NickName>
+                        bbin_guuuu
+                    </NickName>
+                    <ButtonProfile>프로필 편집</ButtonProfile>
+                    <img src = {process.env.PUBLIC_URL + '/option.svg'} alt = '프로필 이미지' /> 
                 </InnerRow1>
                 
                 <InnerRow2>
@@ -32,7 +36,7 @@ const Row2 = styled.div `
     align-items: center;        //포함된 내용을 세로 중앙정렬
     margin: 0 auto;             //프로파일 컴포넌트 중앙정렬
 `;
-
+// Column을 두개로 나눠 사진을 왼쪽에 이름, 팔로워 수, 그리고 프로필 메세지를 오른쪽에 배치
 const Column1 = styled.div `
     display: absolute;
     width: 10%;
@@ -42,12 +46,14 @@ const Column1 = styled.div `
 
 const Column2 = styled.div `
     display: absolute;
-    margin-left: 70%;
+    margin-left: 20%;
     padding-bottom: 3em;
 `;
-
+// 두 번째 column에 3줄의 block display를 가진 row 생성
+// block형태로 만들어서 3개의 줄이 줄바꿈으로 세 번 배치되게
 const InnerRow1 = styled.div `
     position: block;
+    display: flex;
 `;
 
 const InnerRow2 = styled.div `
@@ -62,6 +68,20 @@ const ProfileImage = styled.img `   //메뉴 아이콘 옆에 위치한 동그�
     width: 17vh;
     height: 17vh;
     border-radius: 50%;
+`;
+
+const ButtonProfile = styled.button `
+    font-size: 14px;   
+    padding: 5px 10px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px #DBDBDB solid;
+`;
+
+const NickName = styled.div `
+    font-size: 25px;
 `;
 
 export default Profile;

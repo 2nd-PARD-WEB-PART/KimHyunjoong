@@ -1,11 +1,12 @@
 import React from "react";
 import styled from 'styled-components';
+import Profile from "./Profile";
 
 
 function MyPage() {
     return(
         <div>
-            <Row1>
+            <Row1>          {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
                 <LogoDiv>
                     <img src = {process.env.PUBLIC_URL + '/Logo.svg'} alt = '인스타그램 로고' width = '100vw'/>
                 </LogoDiv>
@@ -14,6 +15,7 @@ function MyPage() {
                 <ProfileImage src = {process.env.PUBLIC_URL + '/profile.jpg'} alt = '프로필 이미지' />
                 </MenuDiv>
             </Row1>
+            <Profile />
         </div>
     );
 }
