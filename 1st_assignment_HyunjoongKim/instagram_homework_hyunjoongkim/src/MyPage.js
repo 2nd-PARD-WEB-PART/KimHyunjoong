@@ -18,7 +18,7 @@ function MyPage() {
     );
 }
 const Row1 = styled.div `
-    padding-top: 0.5em;           //상,하,좌,우의 내부 여백 설정
+    padding-top: 0.5em;           //상 내부 여백 설정
     display: flex;              //display를 flex로 함으로서 내용을 가로정렬
     border-bottom: 1px solid #DBDBDB;
     width: 100%;
@@ -39,12 +39,11 @@ const LogoDiv = styled.div `    //인스타그램 로고 아이콘 왼쪽정렬 
     height: auto;
 `;
 
-const ProfileImage = styled.img `
+const ProfileImage = styled.img `   //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
     width: 2vh;
     height: 2vh;
     bottom: 32%;
     position: absolute;
     border-radius: 22px;
-
 `;
 export default MyPage;
