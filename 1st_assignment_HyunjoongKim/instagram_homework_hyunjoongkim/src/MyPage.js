@@ -6,17 +6,35 @@ function MyPage() {
     return(
         <div>
             <Row1>
-                <img src = {process.env.PUBLIC_URL + '/Logo.svg'} alt = '인스타그램 로고' width = '100vh'/>
-                <img src = {process.env.PUBLIC_URL + '/Menu-Button.svg'} alt = '메뉴 버튼 이미지' width = '100vh' />
+                <LogoDiv>
+                    <img src = {process.env.PUBLIC_URL + '/Logo.svg'} alt = '인스타그램 로고' width = '100vw'/>
+                </LogoDiv>
+                <MenuDiv>
+                <img src = {process.env.PUBLIC_URL + '/Menu-Button.svg'} alt = '메뉴 버튼 이미지' width = '100vw' />
+                </MenuDiv>
             </Row1>
         </div>
     );
 }
 const Row1 = styled.div `
-    padding: 0.25em 1em;
-    display: flex;
-    border: 2px solid #0077cc;
+    padding-top: 0.5em;           //상,하,좌,우의 내부 여백 설정
+    display: flex;              //display를 flex로 함으로서 내용을 가로정렬
+    border-bottom: 1px solid #DBDBDB;
     width: 100%;
+    align-items: center;        //포함된 내용을 세로 중앙정렬
 `;
-
+const MenuDiv = styled.div `    //메뉴 아이콘 오른쪽 정렬 및 여백 조절
+    padding-top: 0.4em;
+    padding-bottom: 0.3em;
+    height: auto;
+    position: absolute;         //메뉴 아이콘을 absolute로 변경하여 인스타그램 로고 아이콘과 같은 비율로 오른쪽으로부터 간격 띄움
+    right: 20%;
+    
+`;
+const LogoDiv = styled.div `    //인스타그램 로고 아이콘 왼쪽정렬 및 여백 조절
+    padding-top: 0.4em;
+    padding-bottom: 0.3em;
+    margin-left: 20%;
+    height: auto;
+`;
 export default MyPage;
