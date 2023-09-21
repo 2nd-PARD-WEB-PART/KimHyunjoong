@@ -29,7 +29,7 @@ const MenuDiv = styled.div `    //메뉴 아이콘 오른쪽 정렬 및 여백 �
     padding-bottom: 0.3em;
     height: auto;
     position: absolute;         //메뉴 아이콘을 absolute로 변경하여 인스타그램 로고 아이콘과 같은 비율로 오른쪽으로부터 간격 띄움
-    right: 20%;
+    right: 22%;
     
 `;
 const LogoDiv = styled.div `    //인스타그램 로고 아이콘 왼쪽정렬 및 여백 조절
