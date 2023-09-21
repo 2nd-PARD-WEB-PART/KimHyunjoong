@@ -11,6 +11,7 @@ function MyPage() {
                 </LogoDiv>
                 <MenuDiv>
                 <img src = {process.env.PUBLIC_URL + '/Menu-Button.svg'} alt = '메뉴 버튼 이미지' width = '100vw' />
+                <ProfileImage src = {process.env.PUBLIC_URL + '/profile.jpg'} alt = '프로필 이미지' />
                 </MenuDiv>
             </Row1>
         </div>
@@ -36,5 +37,14 @@ const LogoDiv = styled.div `    //인스타그램 로고 아이콘 왼쪽정렬 
     padding-bottom: 0.3em;
     margin-left: 20%;
     height: auto;
+`;
+
+const ProfileImage = styled.img `
+    width: 2vh;
+    height: 2vh;
+    bottom: 32%;
+    position: absolute;
+    border-radius: 22px;
+
 `;
 export default MyPage;
