@@ -13,7 +13,7 @@ function Profile() {
                         bbin_guuuu
                     </NickName>
                     <ButtonProfile>프로필 편집</ButtonProfile>
-                    <img src = {process.env.PUBLIC_URL + '/option.svg'} alt = '프로필 이미지' /> 
+                    <OptionIcon src = {process.env.PUBLIC_URL + '/option.svg'} alt = '프로필 이미지' />
                 </InnerRow1>
                 
                 <InnerRow2>
@@ -49,19 +49,17 @@ const Column2 = styled.div `
     margin-left: 20%;
     padding-bottom: 3em;
 `;
-// 두 번째 column에 3줄의 block display를 가진 row 생성
-// block형태로 만들어서 3개의 줄이 줄바꿈으로 세 번 배치되게
+// 두 번째 column에 3줄의 flex display를 가진 row 생성
 const InnerRow1 = styled.div `
-    position: block;
     display: flex;
 `;
 
 const InnerRow2 = styled.div `
-    position: block;
+    display: flex;
 `;
 
 const InnerRow3 = styled.div `
-    position: block;
+    display: flex;
 `;
 
 const ProfileImage = styled.img `   //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
@@ -70,7 +68,7 @@ const ProfileImage = styled.img `   //메뉴 아이콘 옆에 위치한 동그�
     border-radius: 50%;
 `;
 
-const ButtonProfile = styled.button `
+const ButtonProfile = styled.button `  //프로필 편집 버튼 생성
     font-size: 14px;   
     padding: 5px 10px;
     width: 100%;
@@ -78,6 +76,15 @@ const ButtonProfile = styled.button `
     background-color: white;
     border-radius: 4px;
     border: 1px #DBDBDB solid;
+    position: relative;
+    left: 5%;
+`;
+
+const OptionIcon = styled.img `
+    bottom: 10%;
+    position: relative;
+    left: 5%;
+    bottom: 6px;
 `;
 
 const NickName = styled.div `
