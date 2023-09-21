@@ -15,13 +15,15 @@ function Profile() {
                     <ButtonProfile>프로필 편집</ButtonProfile>
                     <OptionIcon src = {process.env.PUBLIC_URL + '/option.svg'} alt = '프로필 이미지' />
                 </InnerRow1>
-                
+                    
                 <InnerRow2>
-                    안녕하세요
+                    <ButtonPost>게시물 3</ButtonPost>
+                    <ButtonFollower>팔로워 500</ButtonFollower>
+                    <ButtonFollowing>팔로워 500</ButtonFollowing>
                 </InnerRow2>
                 
                 <InnerRow3>
-                    안녕하세요
+                    Paypal
                 </InnerRow3>
             </Column2>
         </Row2>
@@ -58,8 +60,10 @@ const InnerRow2 = styled.div `
     display: flex;
 `;
 
-const InnerRow3 = styled.div `
-    display: flex;
+const InnerRow3 = styled.div `      //프로필 메세지를 담고있는 row!
+    display: block;
+    font-size: 16px;
+    margin-top: 9px;
 `;
 
 const ProfileImage = styled.img `   //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
@@ -80,15 +84,42 @@ const ButtonProfile = styled.button `  //프로필 편집 버튼 생성
     left: 5%;
 `;
 
-const OptionIcon = styled.img `
+const OptionIcon = styled.img `         //옵션 아이콘 설정 및 배치
     bottom: 10%;
     position: relative;
     left: 5%;
     bottom: 6px;
 `;
 
-const NickName = styled.div `
+const NickName = styled.div `           //닉네임 설정
     font-size: 25px;
+`;
+
+const ButtonPost = styled.button `
+    background-color: white;
+    border: white;
+    font-size: 16px;
+    width:40%;
+    text-align: left;
+    padding-left: 0;
+`;
+
+const ButtonFollower = styled.button `
+    background-color: white;
+    border: white;
+    font-size: 16px;
+    width: 50%;
+    text-align: left;
+    padding-left: 0;
+`;
+
+const ButtonFollowing = styled.button `
+    background-color: white;
+    border: white;
+    font-size: 16px;
+    width: 50%;
+    text-align: left;
+    padding-left: 0;
 `;
 
 export default Profile;
