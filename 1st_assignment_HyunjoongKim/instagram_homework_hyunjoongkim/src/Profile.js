@@ -14,7 +14,7 @@ function Profile() {
                     </NickName>
                     <ButtonProfile>프로필 편집</ButtonProfile>
                     <OptionButton>
-                    <img src = {process.env.PUBLIC_URL + '/option.svg'} alt = '프로필 이미지' />
+                    <img src = {process.env.PUBLIC_URL + '/option.svg'} alt = '옵션버튼 이미지' />
                     </OptionButton>
                 </InnerRow1>
                     

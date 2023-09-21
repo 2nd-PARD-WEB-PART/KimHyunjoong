@@ -71,8 +71,8 @@ const ActivityButton = styled.button `   //액티비티 버튼
     border: solid white;
 `;
 const ProfileImage = styled.img `   //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
-    width: 2.6vh;
-    height: 2.6vh;
+    width: 1.1em;
+    height: 1.1em;
     bottom: 31%;
     margin-left: 7px;
     position: absolute;
