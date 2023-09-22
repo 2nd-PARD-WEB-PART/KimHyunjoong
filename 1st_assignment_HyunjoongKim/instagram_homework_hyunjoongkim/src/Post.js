@@ -100,19 +100,19 @@ const TaggedDiv = styled.div `
 `;
 
 const Image1 = styled.img `         //첫 번째 사진 설정
-    width: 230px;
-    height: 230px;
+    width: 32%;
+    height: auto;
     object-fit: cover;              //이미지가 부분적으로 잘려도 부모요소에 맞게 크롭되도록 설정
 `;
 
 const Image2 = styled.img `         //두 번째 사진 설정
-    width: 230px;
-    height: 230px;
+    width: 32%;
+    height: auto;
     object-fit: cover;
 `;
 
 const Image3 = styled.img `         //세 번째 사진 설정
-    width: 230px;
-    height: 230px;
+    width: 32%;
+    height: auto;
     object-fit: cover;
 `;
