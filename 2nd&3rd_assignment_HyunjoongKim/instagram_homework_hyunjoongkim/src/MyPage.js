@@ -31,6 +31,7 @@ function MyPage() {
               src={process.env.PUBLIC_URL + "/home.svg"}
               alt="메뉴 버튼 이미지"
               width="17vh"
+              onClick={home}
             />
           </HomeButton>
           <NewButton>
@@ -89,6 +90,7 @@ const HomeButton = styled.button`
   position: relative;
   background-color: white;
   border: solid white;
+  cursor: pointer;
 `;
 const NewButton = styled.button`
   //새로운 포스트 버튼

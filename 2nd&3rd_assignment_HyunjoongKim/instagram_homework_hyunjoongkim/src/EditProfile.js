@@ -29,6 +29,7 @@ function EditProfile() {
               src={process.env.PUBLIC_URL + "/home.svg"}
               alt="메뉴 버튼 이미지"
               width="17vh"
+              onClick={home}
             />
           </HomeButton>
           <NewButton>
@@ -52,6 +53,16 @@ function EditProfile() {
           />
         </MenuDiv>
       </Row1>
+      <Main>
+        <Column1>
+          <InnerRow1>
+            <EditButton>프로필 편집</EditButton>
+            <PasswordButton>비밀번호 변경</PasswordButton>
+          </InnerRow1>
+          <InnerRow2>asdfjksadlfj</InnerRow2>
+        </Column1>
+        <Column2>ㅁㄴㅇ러ㅓㅁㄴ아ㅣ;러ㅏㅣ;ㅁㄴ어</Column2>
+      </Main>
     </div>
   );
 }
@@ -85,6 +96,7 @@ const HomeButton = styled.button`
   position: relative;
   background-color: white;
   border: solid white;
+  cursor: pointer;
 `;
 const NewButton = styled.button`
   //새로운 포스트 버튼
@@ -108,6 +120,48 @@ const ProfileImage = styled.img`
   margin-left: 7px;
   position: absolute;
   border-radius: 22px;
+  cursor: pointer;
+`;
+
+const Main = styled.div`
+  display: flex;
+  background-color: black;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+  height: 200px;
+`;
+
+const Column1 = styled.div`
+  //1열
+  display: block;
+  background-color: red;
+  width: 20%;
+`;
+
+const Column2 = styled.div`
+  //2열
+  background-color: blue;
+  width: 80%;
+`;
+
+const InnerRow1 = styled.div`
+  //프로필 편집 비밀번호 변경 버튼
+  background-color: skyblue;
+`;
+
+const InnerRow2 = styled.div`
+  //Meta 설명
+  background-color: purple;
+`;
+
+const EditButton = styled.button`
+  display: block;
+  cursor: pointer;
+`;
+
+const PasswordButton = styled.button`
+  display: block;
   cursor: pointer;
 `;
 
