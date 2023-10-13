@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Profile from "./Profile";
-import Post from "./Post";
 import { useNavigate } from "react-router-dom";
 
-function MyPage() {
+function EditProfile() {
   const navigate = useNavigate();
   const home = () => {
     navigate("/");
@@ -49,13 +47,11 @@ function MyPage() {
           </ActivityButton>
           <ProfileImage
             src={process.env.PUBLIC_URL + "/profile.jpg"}
-            onClick={gotoEditProfile}
             alt="프로필 이미지"
+            onClick={gotoEditProfile}
           />
         </MenuDiv>
       </Row1>
-      <Profile />
-      <Post />
     </div>
   );
 }
@@ -114,4 +110,5 @@ const ProfileImage = styled.img`
   border-radius: 22px;
   cursor: pointer;
 `;
-export default MyPage;
+
+export default EditProfile;
