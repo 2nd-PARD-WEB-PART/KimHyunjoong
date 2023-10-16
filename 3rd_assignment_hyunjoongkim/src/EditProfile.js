@@ -59,9 +59,41 @@ function EditProfile() {
             <EditButton>프로필 편집</EditButton>
             <PasswordButton>비밀번호 변경</PasswordButton>
           </InnerRow1>
-          <InnerRow2>asdfjksadlfj</InnerRow2>
+          <InnerRow2>
+            <img
+              src={process.env.PUBLIC_URL + "/metaLogo.svg"}
+              alt="메뉴 버튼 이미지"
+              width="60px"
+              height="12px"
+            />
+            <br></br>
+            <img
+              src={process.env.PUBLIC_URL + "/AccountsCenter.svg"}
+              alt="메뉴 버튼 이미지"
+              width="118px"
+              height="16px"
+            />
+            <img
+              src={process.env.PUBLIC_URL + "/Paragraph.svg"}
+              alt="메뉴 버튼 이미지"
+              width="165px"
+              height="80px"
+            />
+          </InnerRow2>
         </Column1>
-        <Column2>ㅁㄴㅇ러ㅓㅁㄴ아ㅣ;러ㅏㅣ;ㅁㄴ어</Column2>
+        <Column2>
+          <FormRow1>
+            <ProfileImage
+              src={process.env.PUBLIC_URL + "/profile.jpg"}
+              alt="프로필 이미지"
+            />
+          </FormRow1>
+          <FormRow2>
+            asdfasdf
+            <FormInnerColumn1></FormInnerColumn1>
+            <FormInnerColumn2></FormInnerColumn2>
+          </FormRow2>
+        </Column2>
       </Main>
     </div>
   );
@@ -125,44 +157,81 @@ const ProfileImage = styled.img`
 
 const Main = styled.div`
   display: flex;
-  background-color: black;
   margin-left: 20%;
   margin-right: 20%;
   margin-top: 5%;
-  height: 200px;
+  height: 700px;
 `;
 
 const Column1 = styled.div`
   //1열
   display: block;
-  background-color: red;
-  width: 20%;
+  width: 30%;
+  border-left: #efefef solid;
+  height: 700px;
+  border-bottom: #efefef solid;
+  border-right: #efefef solid;
 `;
 
 const Column2 = styled.div`
   //2열
-  background-color: blue;
-  width: 80%;
+  width: 70%;
+  height: 700px;
+  border-top: #efefef solid;
+  border-right: #efefef solid;
+  border-bottom: #efefef solid;
+  display: block;
 `;
 
 const InnerRow1 = styled.div`
   //프로필 편집 비밀번호 변경 버튼
-  background-color: skyblue;
+  border-top: 1px #efefef solid;
+  border-bottom: 1px #efefef solid;
+  height: 550px;
 `;
 
 const InnerRow2 = styled.div`
   //Meta 설명
-  background-color: purple;
+  margin-left: 10%;
+  height: 150px;
+  padding-top: 7%;
 `;
 
 const EditButton = styled.button`
   display: block;
   cursor: pointer;
+  width: 200px;
+  height: 50px;
+  border-radius: 0;
+  padding-right: 35%;
+  border-left: 3px black solid;
+  border-top: 1px;
+  border-bottom: white;
+  border-right: white;
+  background-color: white;
 `;
 
 const PasswordButton = styled.button`
   display: block;
   cursor: pointer;
+  width: 200px;
+  height: 50px;
+  border-radius: 0;
+  padding-right: 30%;
+  border-left: white;
+  border-top: white;
+  border-bottom: white;
+  border-right: white;
+  background-color: white;
 `;
+
+const FormRow1 = styled.div`
+  background-color: red;
+`;
+const FormRow2 = styled.div`
+  background-color: blue;
+`;
+const FormInnerColumn1 = styled.div``;
+const FormInnerColumn2 = styled.div``;
 
 export default EditProfile;
