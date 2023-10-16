@@ -83,13 +83,23 @@ function EditProfile() {
         </Column1>
         <Column2>
           <FormRow1>
-            <ProfileImage
-              src={process.env.PUBLIC_URL + "/profile.jpg"}
-              alt="프로필 이미지"
-            />
+            <FormImage>
+              <FormProfileImage
+                src={process.env.PUBLIC_URL + "/profile.jpg"}
+                alt="프로필 이미지"
+              />
+            </FormImage>
+            <FormProfileDiv>
+              <div>
+                <h3>bbin_guuuu</h3>
+              </div>
+              <div>
+                <h5>프로필 사진 바꾸기</h5>
+              </div>
+            </FormProfileDiv>
           </FormRow1>
           <FormRow2>
-            asdfasdf
+            asdfasdfasdfsa
             <FormInnerColumn1></FormInnerColumn1>
             <FormInnerColumn2></FormInnerColumn2>
           </FormRow2>
@@ -150,9 +160,16 @@ const ProfileImage = styled.img`
   height: 1.1em;
   bottom: 31%;
   margin-left: 7px;
-  position: absolute;
   border-radius: 22px;
+  position: absolute;
   cursor: pointer;
+`;
+
+const FormProfileImage = styled.img`
+  //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
 `;
 
 const Main = styled.div`
@@ -226,12 +243,37 @@ const PasswordButton = styled.button`
 `;
 
 const FormRow1 = styled.div`
-  background-color: red;
+  position: relative;
+  height: 100px;
+  display: flex;
 `;
 const FormRow2 = styled.div`
   background-color: blue;
+  height: 600px;
 `;
+
 const FormInnerColumn1 = styled.div``;
 const FormInnerColumn2 = styled.div``;
+
+const FormImage = styled.div`
+  width: 25%;
+  height: 100%;
+  justify-content: right;
+  display: flex;
+  align-items: center;
+`;
+
+const FormProfileDiv = styled.div`
+  width: 75%;
+  height: 100%;
+  display: block;
+  padding-top: 25px;
+  box-sizing: border-box;
+  h3,
+  h5 {
+    margin: 1px 0px;
+    margin-left: 20px;
+  }
+`;
 
 export default EditProfile;
