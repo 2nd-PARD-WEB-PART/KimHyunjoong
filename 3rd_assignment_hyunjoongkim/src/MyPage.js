@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 function MyPage({ profileData }) {
   const navigate = useNavigate();
-  const gotoEditProfile = () => {
-    navigate("/EditProfile");
-  };
   const home = () => {
     navigate("/Home");
+  };
+  const profile = () => {
+    navigate("/");
   };
   return (
     <div>
@@ -53,7 +53,7 @@ function MyPage({ profileData }) {
               profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
             }
             alt="프로필 이미지"
-            onClick={gotoEditProfile}
+            onClick={profile}
           />
         </MenuDiv>
       </Row1>

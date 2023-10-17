@@ -25,6 +25,7 @@ function Profile({ profileData }) {
             <img
               src={process.env.PUBLIC_URL + "/option.svg"}
               alt="옵션버튼 이미지"
+              onClick={gotoEditProfile}
             />
           </OptionButton>
         </InnerRow1>

@@ -14,8 +14,27 @@ function EditProfile({ profileData, setProfileData }) {
 
   const [isFormChanged, setIsFormChanged] = useState(false);
 
-  const handleInputChange = () => {
-    setIsFormChanged(true);
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+
+    switch (id) {
+      case "nameInput":
+        setIsFormChanged(value !== profileData.nickname);
+        break;
+      case "introInput":
+        setIsFormChanged(value !== profileData.intro);
+        break;
+      case "webInput":
+        setIsFormChanged(value !== profileData.web);
+        break;
+      case "emailInput":
+        setIsFormChanged(value !== profileData.email);
+        break;
+      case "genderInput":
+        setIsFormChanged(value !== profileData.gender);
+        break;
+      default:
+    }
   };
 
   const handleSubmit = (event) => {

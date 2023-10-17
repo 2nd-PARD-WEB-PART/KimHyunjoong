@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 function Home({ profileData }) {
+  const [likeStatus, setLikeStatus] = useState(false); // 좋아요 상태
+  const [likeCount, setLikeCount] = useState(1070); // 좋아요 카운트
   const navigate = useNavigate();
-  const gotoEditProfile = () => {
-    navigate("/EditProfile");
+  const profile = () => {
+    navigate("/");
   };
   const home = () => {
     navigate("/Home");
   };
+  // Like 아이콘 클릭 이벤트 핸들러
+  const handleLikeClick = () => {
+    if (likeStatus) {
+      // 이미 좋아요 상태라면,
+      setLikeStatus(false);
+      setLikeCount(likeCount - 1);
+    } else {
+      // 아직 좋아요 상태가 아니라면,
+      setLikeStatus(true);
+      setLikeCount(likeCount + 1);
+    }
+  };
+  const [comment, setComment] = useState(""); // 현재 입력 중인 댓글
+  const [commentsList, setCommentsList] = useState([]); // 댓글 목록
+
+  // 댓글 입력 이벤트 핸들러
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  // 댓글 등록 이벤트 핸들러
+  const handleCommentSubmit = (event) => {
+    event.preventDefault(); // form submit의 기본 동작(페이지 리로드) 방지
+
+    if (comment !== "") {
+      setCommentsList([...commentsList, comment]);
+      setComment("");
+    }
+  };
+
   return (
     <div>
       <MainRow>
@@ -52,7 +84,7 @@ function Home({ profileData }) {
               profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
             }
             alt="프로필 이미지"
-            onClick={gotoEditProfile}
+            onClick={profile}
           />
         </MenuDiv>
       </MainRow>
@@ -78,7 +110,76 @@ function Home({ profileData }) {
               alt="원형"
               width="2.4%"
             />
+            <PostNickName>supershyNewJeans</PostNickName>
           </InnerRow1>
+          <InnerRow2>
+            <img
+              src={process.env.PUBLIC_URL + "/Photo.jpeg"}
+              alt="포스트 사진"
+              width="99.5%"
+            />
+          </InnerRow2>
+          <InnerRow3>
+            <LeftIcon>
+              <Like
+                src={
+                  process.env.PUBLIC_URL +
+                  (likeStatus ? "/RedLike.png" : "/Like.png")
+                }
+                alt="좋아요 아이콘"
+                onClick={handleLikeClick}
+              />
+              <Comment
+                src={process.env.PUBLIC_URL + "/Comment.png"}
+                alt="댓글 아이콘"
+                width="10%"
+              />
+              <SharePosts
+                src={process.env.PUBLIC_URL + "/SharePosts.png"}
+                alt="공유 아이콘"
+                width="10%"
+              />
+            </LeftIcon>
+            <RightIcon>
+              <Save
+                src={process.env.PUBLIC_URL + "/Save.png"}
+                alt="저장 아이콘"
+                width="10%"
+              />
+            </RightIcon>
+          </InnerRow3>
+          <InnerRow4>{`좋아요 ${likeCount}개`}</InnerRow4>
+          <InnerRow5>
+            <CommentTable>
+              <tbody>
+                {/* 사용자가 추가한 댓글 출력 */}
+                {commentsList.map((item, index) => (
+                  <tr key={index}>
+                    <td>{profileData.nickname}</td> {/* 프로필 닉네임 출력 */}
+                    <td>{item}</td> {/* 해당 댓글 내용 출력 */}
+                  </tr>
+                ))}
+              </tbody>
+              <Time>1 HOUR AGO</Time>
+            </CommentTable>
+          </InnerRow5>
+
+          <InnerRow6>
+            <Emoji
+              src={process.env.PUBLIC_URL + "/Emoji.png"}
+              alt="이모티콘"
+              width="5%"
+            />
+            <form onSubmit={handleCommentSubmit}>
+              <CommentInput
+                type="text"
+                value={comment}
+                onChange={handleCommentChange}
+                placeholder="댓글 달기..."
+              />
+              <PostButton type="submit">게시</PostButton>
+            </form>
+          </InnerRow6>
         </Row2>
       </Main>
     </div>
@@ -148,7 +249,6 @@ const ProfileImageExtra = styled.img`
   margin-left: 7px;
   border-radius: 50%;
   position: relative;
-  cursor: pointer;
 `;
 const Search = styled.div`
   display: flex;
@@ -180,29 +280,134 @@ const Row1 = styled.div`
   display: flex;
   width: 85%;
   height: 80px;
+  font-weight: 500;
 `;
 const Row2 = styled.div`
   display: block;
   width: 63%;
-  height: 700px;
+  padding-bottom: 10px;
   border: 1px #dbdbdb solid;
 `;
 const InnerRow1 = styled.div`
-  background-color: blue;
   display: flex;
-  height: 8%;
+  height: 50px;
   padding-left: 3%;
   align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px #dbdbdb solid;
 `;
-const InnerRow2 = styled.div``;
-const InnerRow3 = styled.div``;
-const InnerRow4 = styled.div``;
-const InnerRow5 = styled.div``;
-const InnerRow6 = styled.div``;
+
+const InnerRow2 = styled.div`
+  display: flex;
+  overflow: hidden;
+  margin-top: 0.3%;
+  justify-content: center;
+`;
+const InnerRow3 = styled.div`
+  display: flex;
+  margin-top: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+`;
+const InnerRow4 = styled.div`
+  margin-left: 3%;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  margin-top: 3%;
+  font-weight: 500;
+  font-size: 14px;
+`;
+const InnerRow5 = styled.div`
+  display: flex;
+  padding-left: 2.5%;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 4%;
+  border-bottom: 1px #dbdbdb solid;
+`;
+const InnerRow6 = styled.div`
+  padding-left: 2.5%;
+  font-weight: 500;
+  font-size: 14px;
+  padding-top: 3%;
+  display: flex;
+  align-items: center;
+`;
 
 const Shyboy = styled.img`
   position: absolute;
   margin-left: 0.3%;
+`;
+
+const PostNickName = styled.div`
+  margin-left: 5%;
+`;
+
+const Like = styled.img`
+  margin-right: 5%;
+  cursor: pointer;
+`;
+const Comment = styled.img`
+  margin-right: 5%;
+`;
+const SharePosts = styled.img``;
+const Save = styled.img`
+  margin-right: 3%;
+`;
+
+const LeftIcon = styled.div`
+  width: 50%;
+  display: flex;
+`;
+const RightIcon = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: right;
+`;
+const CommentTable = styled.table`
+  td {
+    padding-right: 25px; // 셀 안쪽 여백 설정
+  }
+`;
+const Time = styled.div`
+  color: var(--Gray, #8e8e8e);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  margin-top: 5%;
+`;
+
+const Emoji = styled.img`
+  margin-right: 5%;
+`;
+
+const CommentInput = styled.input`
+  width: 320px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const PostButton = styled.button`
+  color: #0095f6;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  height: 30px;
+  width: 50px;
+  cursor: pointer;
+  background-color: white;
+  border: none;
 `;
 
 export default Home;
