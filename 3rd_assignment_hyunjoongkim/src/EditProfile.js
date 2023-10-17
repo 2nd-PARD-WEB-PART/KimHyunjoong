@@ -7,22 +7,37 @@ function EditProfile({ profileData, setProfileData }) {
   const home = () => {
     navigate("/");
   };
+
   const gotoEditProfile = () => {
     navigate("/EditProfile");
   };
+
+  const [isFormChanged, setIsFormChanged] = useState(false);
+
+  const handleInputChange = () => {
+    setIsFormChanged(true);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const newNickname = event.target.elements.nameInput.value;
     const newIntro = event.target.elements.introInput.value;
+    const newWeb = event.target.elements.webInput.value;
+    const newEmail = event.target.elements.emailInput.value;
+    const newGender = event.target.elements.genderInput.value;
 
     setProfileData((prevState) => ({
       ...prevState,
       nickname: newNickname,
       intro: newIntro,
+      web: newWeb,
+      email: newEmail,
+      gender: newGender,
     }));
 
     navigate("/");
+    setIsFormChanged(false);
   };
   // 프로필 이미지 배열
   const profileImages = ["/profile1.png", "/profile.jpg"];
@@ -155,29 +170,43 @@ function EditProfile({ profileData, setProfileData }) {
                   type="text"
                   id="nameInput"
                   defaultValue={profileData.nickname}
+                  onChange={handleInputChange}
                 />
                 <br></br>
-                <IntroInput id="introInput" defaultValue={profileData.intro} />
+                <IntroInput
+                  id="introInput"
+                  defaultValue={profileData.intro}
+                  onChange={handleInputChange}
+                />
                 <br></br>
                 <StyledInput
                   type="text"
                   id="webInput"
                   defaultValue={profileData.web}
+                  onChange={handleInputChange}
                 />
                 <br></br>
                 <StyledInput
                   type="text"
                   id="emailInput"
                   defaultValue={profileData.email}
+                  onChange={handleInputChange}
                 />
                 <br></br>
                 <StyledInput
                   type="text"
                   id="genderInput"
                   defaultValue={profileData.gender}
+                  onChange={handleInputChange}
                 />
                 <br></br>
-                <FormButton type="submit">제출</FormButton>
+                <FormButton
+                  type="submit"
+                  isFormChanged={isFormChanged}
+                  disabled={!isFormChanged}
+                >
+                  제출
+                </FormButton>
               </form>
             </FormInnerColumn2>
           </FormRow2>
@@ -367,7 +396,8 @@ const FormProfileDiv = styled.div`
 `;
 
 const FormButton = styled.button`
-  background-color: rgba(0, 149, 246, 0.25);
+  background-color: ${(props) =>
+    props.isFormChanged ? "#0095F6" : "rgba(0, 149, 246, 0.25)"};
   color: white;
   border-radius: 4px;
   border: white;
