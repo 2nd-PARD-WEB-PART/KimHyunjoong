@@ -73,6 +73,7 @@ function EditProfile() {
               width="118px"
               height="16px"
             />
+            <br></br>
             <img
               src={process.env.PUBLIC_URL + "/Paragraph.svg"}
               alt="메뉴 버튼 이미지"
@@ -99,9 +100,34 @@ function EditProfile() {
             </FormProfileDiv>
           </FormRow1>
           <FormRow2>
-            asdfasdfasdfsa
-            <FormInnerColumn1></FormInnerColumn1>
-            <FormInnerColumn2></FormInnerColumn2>
+            <FormInnerColumn1>
+              <form>
+                <StyledLabel htmlFor="nameInput">사용자 이름</StyledLabel>
+                <br></br>
+                <IntroLabel htmlFor="introInput">소개</IntroLabel>
+                <br></br>
+                <StyledLabel htmlFor="webInput">웹사이트</StyledLabel>
+                <br></br>
+                <StyledLabel htmlFor="emailInput">이메일</StyledLabel>
+                <br></br>
+                <StyledLabel htmlFor="genderInput">성별</StyledLabel>
+              </form>
+            </FormInnerColumn1>
+            <FormInnerColumn2>
+              <form>
+                <StyledInput type="text" id="nameInput" />
+                <br></br>
+                <IntroInput id="introInput" />
+                <br></br>
+                <StyledInput type="text" id="webInput" />
+                <br></br>
+                <StyledInput type="text" id="emailInput" />
+                <br></br>
+                <StyledInput type="text" id="genderInput" />
+                <br></br>
+                <FormButton type="submit">제출</FormButton>
+              </form>
+            </FormInnerColumn2>
           </FormRow2>
         </Column2>
       </Main>
@@ -185,7 +211,7 @@ const Column1 = styled.div`
   display: block;
   width: 30%;
   border-left: #efefef solid;
-  height: 700px;
+  height: 570px;
   border-bottom: #efefef solid;
   border-right: #efefef solid;
 `;
@@ -193,7 +219,7 @@ const Column1 = styled.div`
 const Column2 = styled.div`
   //2열
   width: 70%;
-  height: 700px;
+  height: 568.4px;
   border-top: #efefef solid;
   border-right: #efefef solid;
   border-bottom: #efefef solid;
@@ -204,14 +230,15 @@ const InnerRow1 = styled.div`
   //프로필 편집 비밀번호 변경 버튼
   border-top: 1px #efefef solid;
   border-bottom: 1px #efefef solid;
-  height: 550px;
+  height: 350px;
 `;
 
 const InnerRow2 = styled.div`
   //Meta 설명
-  margin-left: 10%;
+  padding-left: 7%;
   height: 150px;
-  padding-top: 7%;
+  padding-top: 25%;
+  display: inline-block;
 `;
 
 const EditButton = styled.button`
@@ -248,12 +275,19 @@ const FormRow1 = styled.div`
   display: flex;
 `;
 const FormRow2 = styled.div`
-  background-color: blue;
   height: 600px;
+  display: flex;
 `;
 
-const FormInnerColumn1 = styled.div``;
-const FormInnerColumn2 = styled.div``;
+const FormInnerColumn1 = styled.div`
+  width: 25%;
+  text-align: right;
+`;
+const FormInnerColumn2 = styled.div`
+  width: 75%;
+  text-align: left;
+  margin-left: 20px;
+`;
 
 const FormImage = styled.div`
   width: 25%;
@@ -261,6 +295,7 @@ const FormImage = styled.div`
   justify-content: right;
   display: flex;
   align-items: center;
+  border-left: 1px #efefef solid;
 `;
 
 const FormProfileDiv = styled.div`
@@ -274,6 +309,46 @@ const FormProfileDiv = styled.div`
     margin: 1px 0px;
     margin-left: 20px;
   }
+`;
+
+const FormButton = styled.button`
+  background-color: rgba(0, 149, 246, 0.25);
+  color: white;
+  border-radius: 4px;
+  border: white;
+  margin-top: 20px;
+  width: 15%;
+  height: 30px;
+  cursor: pointer;
+`;
+
+// Label styled components
+const StyledLabel = styled.label`
+  display: block;
+  margin-bottom: 30px;
+`;
+const IntroLabel = styled.label`
+  display: block;
+  margin-bottom: 56px;
+`;
+
+// Input styled components
+const StyledInput = styled.input`
+  display: block;
+  border-radius: 2px;
+  border: 1px #efefef solid;
+  width: 70%;
+  margin-bottom: 30px;
+`;
+
+const IntroInput = styled.textarea`
+  display: block;
+  border-radius: 2px;
+  border: 1px #efefef solid;
+  width: 70%;
+  height: 40px;
+  margin-bottom: 33px;
+  resize: none;
 `;
 
 export default EditProfile;
