@@ -4,7 +4,7 @@ import Profile from "./Profile";
 import Post from "./Post";
 import { useNavigate } from "react-router-dom";
 
-function MyPage() {
+function MyPage({ profileData }) {
   const navigate = useNavigate();
   const home = () => {
     navigate("/");
@@ -49,13 +49,15 @@ function MyPage() {
             />
           </ActivityButton>
           <ProfileImage
-            src={process.env.PUBLIC_URL + "/profile.jpg"}
-            onClick={gotoEditProfile}
+            src={
+              profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
+            }
             alt="프로필 이미지"
+            onClick={gotoEditProfile}
           />
         </MenuDiv>
       </Row1>
-      <Profile />
+      <Profile profileData={profileData} />
       <Post />
     </div>
   );

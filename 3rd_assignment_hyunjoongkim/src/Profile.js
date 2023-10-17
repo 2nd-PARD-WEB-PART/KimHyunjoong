@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-function Profile() {
+function Profile({ profileData }) {
   const navigate = useNavigate();
   const gotoEditProfile = () => {
     navigate("/EditProfile");
@@ -11,13 +11,15 @@ function Profile() {
     <Row2>
       <Column1>
         <ProfileImage
-          src={process.env.PUBLIC_URL + "/profile.jpg"}
+          src={
+            profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
+          }
           alt="프로필 이미지"
         />
       </Column1>
       <Column2>
         <InnerRow1>
-          <NickName>bbin_guuuu</NickName>
+          <NickName>{profileData.nickname}</NickName>
           <ButtonProfile onClick={gotoEditProfile}>프로필 편집</ButtonProfile>
           <OptionButton>
             <img
@@ -33,7 +35,7 @@ function Profile() {
           <ButtonFollowing>팔로워 500</ButtonFollowing>
         </InnerRow2>
 
-        <InnerRow3>Paypal</InnerRow3>
+        <InnerRow3>{profileData.intro}</InnerRow3>
       </Column2>
     </Row2>
   );

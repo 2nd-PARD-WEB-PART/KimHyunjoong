@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-function EditProfile() {
+function EditProfile({ profileData, setProfileData }) {
   const navigate = useNavigate();
   const home = () => {
     navigate("/");
@@ -10,6 +10,37 @@ function EditProfile() {
   const gotoEditProfile = () => {
     navigate("/EditProfile");
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const newNickname = event.target.elements.nameInput.value;
+    const newIntro = event.target.elements.introInput.value;
+
+    setProfileData((prevState) => ({
+      ...prevState,
+      nickname: newNickname,
+      intro: newIntro,
+    }));
+
+    navigate("/");
+  };
+  // 프로필 이미지 배열
+  const profileImages = ["/profile1.png", "/profile.jpg"];
+
+  // 현재 보여주는 프로필 이미지의 인덱스
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const changeProfileImage = () => {
+    let nextImageIndex = (currentImageIndex + 1) % profileImages.length;
+
+    setProfileData({
+      ...profileData,
+      profileImg: process.env.PUBLIC_URL + profileImages[nextImageIndex],
+    });
+
+    setCurrentImageIndex(nextImageIndex);
+  };
+
   return (
     <div>
       <Row1>
@@ -47,7 +78,9 @@ function EditProfile() {
             />
           </ActivityButton>
           <ProfileImage
-            src={process.env.PUBLIC_URL + "/profile.jpg"}
+            src={
+              profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
+            }
             alt="프로필 이미지"
             onClick={gotoEditProfile}
           />
@@ -86,16 +119,19 @@ function EditProfile() {
           <FormRow1>
             <FormImage>
               <FormProfileImage
-                src={process.env.PUBLIC_URL + "/profile.jpg"}
+                src={
+                  profileData.profileImg ||
+                  process.env.PUBLIC_URL + "/profile.jpg"
+                }
                 alt="프로필 이미지"
               />
             </FormImage>
             <FormProfileDiv>
               <div>
-                <h3>bbin_guuuu</h3>
+                <h3>{profileData.nickname}</h3>
               </div>
               <div>
-                <h5>프로필 사진 바꾸기</h5>
+                <h5 onClick={changeProfileImage}>프로필 사진 바꾸기</h5>
               </div>
             </FormProfileDiv>
           </FormRow1>
@@ -114,16 +150,32 @@ function EditProfile() {
               </form>
             </FormInnerColumn1>
             <FormInnerColumn2>
-              <form>
-                <StyledInput type="text" id="nameInput" />
+              <form onSubmit={handleSubmit}>
+                <StyledInput
+                  type="text"
+                  id="nameInput"
+                  defaultValue={profileData.nickname}
+                />
                 <br></br>
-                <IntroInput id="introInput" />
+                <IntroInput id="introInput" defaultValue={profileData.intro} />
                 <br></br>
-                <StyledInput type="text" id="webInput" />
+                <StyledInput
+                  type="text"
+                  id="webInput"
+                  defaultValue={profileData.web}
+                />
                 <br></br>
-                <StyledInput type="text" id="emailInput" />
+                <StyledInput
+                  type="text"
+                  id="emailInput"
+                  defaultValue={profileData.email}
+                />
                 <br></br>
-                <StyledInput type="text" id="genderInput" />
+                <StyledInput
+                  type="text"
+                  id="genderInput"
+                  defaultValue={profileData.gender}
+                />
                 <br></br>
                 <FormButton type="submit">제출</FormButton>
               </form>
@@ -235,9 +287,9 @@ const InnerRow1 = styled.div`
 
 const InnerRow2 = styled.div`
   //Meta 설명
-  padding-left: 7%;
+  padding-left: 15%;
   height: 150px;
-  padding-top: 25%;
+  padding-top: 15%;
   display: inline-block;
 `;
 
@@ -308,6 +360,9 @@ const FormProfileDiv = styled.div`
   h5 {
     margin: 1px 0px;
     margin-left: 20px;
+  }
+  h5 {
+    cursor: pointer;
   }
 `;
 
