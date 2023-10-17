@@ -8,8 +8,8 @@ function EditProfile({ profileData, setProfileData }) {
     navigate("/Home");
   };
 
-  const gotoEditProfile = () => {
-    navigate("/EditProfile");
+  const profile = () => {
+    navigate("/");
   };
 
   const [isFormChanged, setIsFormChanged] = useState(false);
@@ -134,7 +134,7 @@ function EditProfile({ profileData, setProfileData }) {
               profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
             }
             alt="프로필 이미지"
-            onClick={gotoEditProfile}
+            onClick={profile}
           />
         </MenuDiv>
       </Row1>

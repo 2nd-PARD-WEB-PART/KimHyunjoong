@@ -45,7 +45,6 @@ function Home({ profileData }) {
   return (
     <div>
       <MainRow>
-        {" "}
         {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
         <LogoDiv>
           <img
