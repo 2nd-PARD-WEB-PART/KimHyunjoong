@@ -61,13 +61,12 @@ function EditProfile({ profileData, setProfileData }) {
     setIsFormChanged(false);
 
     if (newProfileImg) {
-      // If a new image has been selected and is now being submitted...
       setProfileData((prevState) => ({
         ...prevState,
         profileImg: newProfileImg,
-      })); // Update the actual profile data with the new image
+      }));
 
-      setNewProfileImg(null); // Clear out the temporary state holding the new image
+      setNewProfileImg(null);
     }
 
     setIsFormChanged(false);
@@ -80,7 +79,6 @@ function EditProfile({ profileData, setProfileData }) {
       let dataUrl = fileReader.result;
       setNewProfileImg(dataUrl);
 
-      // Check if the selected image is the same as the current profile image
       if (dataUrl === profileData.profileImg) {
         setIsFormChanged(false);
       } else {
