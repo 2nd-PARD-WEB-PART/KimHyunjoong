@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MyPage from "./MyPage";
 import EditProfile from "./EditProfile";
+import Home from "./Home";
 
 function App() {
   const [profileData, setProfileData] = useState({
@@ -25,6 +26,7 @@ function App() {
             />
           }
         />
+        <Route path="/Home" element={<Home profileData={profileData} />} />
       </Routes>
     </Router>
   );

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function EditProfile({ profileData, setProfileData }) {
   const navigate = useNavigate();
   const home = () => {
-    navigate("/");
+    navigate("/Home");
   };
 
   const gotoEditProfile = () => {
@@ -39,21 +39,22 @@ function EditProfile({ profileData, setProfileData }) {
     navigate("/");
     setIsFormChanged(false);
   };
-  // 프로필 이미지 배열
-  const profileImages = ["/profile1.png", "/profile.jpg"];
 
-  // 현재 보여주는 프로필 이미지의 인덱스
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const changeProfileImage = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
 
-  const changeProfileImage = () => {
-    let nextImageIndex = (currentImageIndex + 1) % profileImages.length;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setProfileData({
+        ...profileData,
+        profileImg: reader.result,
+      });
+    };
 
-    setProfileData({
-      ...profileData,
-      profileImg: process.env.PUBLIC_URL + profileImages[nextImageIndex],
-    });
-
-    setCurrentImageIndex(nextImageIndex);
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -145,9 +146,18 @@ function EditProfile({ profileData, setProfileData }) {
               <div>
                 <h3>{profileData.nickname}</h3>
               </div>
-              <div>
-                <h5 onClick={changeProfileImage}>프로필 사진 바꾸기</h5>
-              </div>
+              <File>
+                <FileButton
+                  type="file"
+                  accept="image/*"
+                  id="profileChange"
+                  display="none"
+                  onChange={changeProfileImage}
+                />
+                <FileButtonLabel for="profileChange">
+                  프로필 사진 바꾸기
+                </FileButtonLabel>
+              </File>
             </FormProfileDiv>
           </FormRow1>
           <FormRow2>
@@ -355,6 +365,7 @@ const FormRow1 = styled.div`
   height: 100px;
   display: flex;
 `;
+
 const FormRow2 = styled.div`
   height: 600px;
   display: flex;
@@ -385,14 +396,25 @@ const FormProfileDiv = styled.div`
   display: block;
   padding-top: 25px;
   box-sizing: border-box;
-  h3,
-  h5 {
+  h3 {
     margin: 1px 0px;
     margin-left: 20px;
   }
-  h5 {
-    cursor: pointer;
-  }
+`;
+
+const File = styled.div`
+  margin-left: 20px;
+`;
+
+const FileButton = styled.input`
+  display: none;
+`;
+
+const FileButtonLabel = styled.label`
+  cursor: pointer;
+  color: #0095f6;
+  font-weight: 500;
+  font-size: 14px;
 `;
 
 const FormButton = styled.button`

@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Profile from "./Profile";
-import Post from "./Post";
 import { useNavigate } from "react-router-dom";
 
-function MyPage({ profileData }) {
+function Home({ profileData }) {
   const navigate = useNavigate();
   const gotoEditProfile = () => {
     navigate("/EditProfile");
@@ -14,7 +12,7 @@ function MyPage({ profileData }) {
   };
   return (
     <div>
-      <Row1>
+      <MainRow>
         {" "}
         {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
         <LogoDiv>
@@ -25,6 +23,7 @@ function MyPage({ profileData }) {
             onClick={home}
           />
         </LogoDiv>
+        <Search>검색</Search>
         <MenuDiv>
           <HomeButton>
             <img
@@ -56,13 +55,36 @@ function MyPage({ profileData }) {
             onClick={gotoEditProfile}
           />
         </MenuDiv>
-      </Row1>
-      <Profile profileData={profileData} />
-      <Post />
+      </MainRow>
+      <Main>
+        <Row1>
+          <ProfileImageExtra
+            src={
+              profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
+            }
+            alt="프로필 이미지"
+          />
+          <NickName>{profileData.nickname}</NickName>
+        </Row1>
+        <Row2>
+          <InnerRow1>
+            <img
+              src={process.env.PUBLIC_URL + "/circle.png"}
+              alt="원형"
+              width="8%"
+            />
+            <Shyboy
+              src={process.env.PUBLIC_URL + "/supershy.png"}
+              alt="원형"
+              width="2.4%"
+            />
+          </InnerRow1>
+        </Row2>
+      </Main>
     </div>
   );
 }
-const Row1 = styled.div`
+const MainRow = styled.div`
   padding-top: 0.5em; //상 내부 여백 설정
   display: flex; //display를 flex로 함으로서 내용을 가로정렬
   border-bottom: 1px solid #dbdbdb;
@@ -118,4 +140,69 @@ const ProfileImage = styled.img`
   border-radius: 22px;
   cursor: pointer;
 `;
-export default MyPage;
+
+const ProfileImageExtra = styled.img`
+  //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
+  width: 3em;
+  height: 3em;
+  margin-left: 7px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+`;
+const Search = styled.div`
+  display: flex;
+  width: 5%;
+  padding: 4px 72px 4px 71px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  border: 1px solid var(--Border-Color, #dbdbdb);
+  background: #efefef;
+  margin-left: 13%;
+  color: #8e8e8e;
+`;
+
+const NickName = styled.div`
+  margin-left: 4%;
+  font-size: 15px;
+`;
+
+const Main = styled.div`
+  display: block;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+  height: 700px;
+`;
+const Row1 = styled.div`
+  justify-content: right;
+  display: flex;
+  width: 85%;
+  height: 80px;
+`;
+const Row2 = styled.div`
+  display: block;
+  width: 63%;
+  height: 700px;
+  border: 1px #dbdbdb solid;
+`;
+const InnerRow1 = styled.div`
+  background-color: blue;
+  display: flex;
+  height: 8%;
+  padding-left: 3%;
+  align-items: center;
+`;
+const InnerRow2 = styled.div``;
+const InnerRow3 = styled.div``;
+const InnerRow4 = styled.div``;
+const InnerRow5 = styled.div``;
+const InnerRow6 = styled.div``;
+
+const Shyboy = styled.img`
+  position: absolute;
+  margin-left: 0.3%;
+`;
+
+export default Home;
