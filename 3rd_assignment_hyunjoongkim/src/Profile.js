@@ -109,6 +109,7 @@ const OptionButton = styled.button`
   background-color: white;
   border: solid white;
   padding-left: 0;
+  cursor: pointer;
 `;
 
 const NickName = styled.div`
