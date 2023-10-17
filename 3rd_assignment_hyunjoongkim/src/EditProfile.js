@@ -13,6 +13,7 @@ function EditProfile({ profileData, setProfileData }) {
   };
 
   const [isFormChanged, setIsFormChanged] = useState(false);
+  const [newProfileImg, setNewProfileImg] = useState(null);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
@@ -35,6 +36,7 @@ function EditProfile({ profileData, setProfileData }) {
         break;
       default:
     }
+    if (newProfileImg) setIsFormChanged(true);
   };
 
   const handleSubmit = (event) => {
@@ -57,22 +59,39 @@ function EditProfile({ profileData, setProfileData }) {
 
     navigate("/");
     setIsFormChanged(false);
+
+    if (newProfileImg) {
+      // If a new image has been selected and is now being submitted...
+      setProfileData((prevState) => ({
+        ...prevState,
+        profileImg: newProfileImg,
+      })); // Update the actual profile data with the new image
+
+      setNewProfileImg(null); // Clear out the temporary state holding the new image
+    }
+
+    setIsFormChanged(false);
   };
 
   const changeProfileImage = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+    let fileReader = new FileReader();
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setProfileData({
-        ...profileData,
-        profileImg: reader.result,
-      });
+    fileReader.onloadend = () => {
+      let dataUrl = fileReader.result;
+      setNewProfileImg(dataUrl);
+
+      // Check if the selected image is the same as the current profile image
+      if (dataUrl === profileData.profileImg) {
+        setIsFormChanged(false);
+      } else {
+        setIsFormChanged(true);
+      }
     };
 
+    let file = event.target.files[0];
+
     if (file) {
-      reader.readAsDataURL(file);
+      fileReader.readAsDataURL(file);
     }
   };
 
@@ -155,6 +174,7 @@ function EditProfile({ profileData, setProfileData }) {
             <FormImage>
               <FormProfileImage
                 src={
+                  newProfileImg ||
                   profileData.profileImg ||
                   process.env.PUBLIC_URL + "/profile.jpg"
                 }
