@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import HomeContext from "./HomeContext";
 
-function Profile({ profileData }) {
+function Profile() {
+  // Context를 사용하여 App.js에 정의한 provider의 value들을 전역 상태로 관리
+  const { profileData } = useContext(HomeContext);
   const navigate = useNavigate();
   const gotoEditProfile = () => {
     navigate("/EditProfile");

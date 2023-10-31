@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import HomeContext from "./HomeContext";
 
-function Home({ profileData }) {
+function Home() {
   // Context를 사용하여 App.js에 정의한 provider의 value들을 전역 상태로 관리
   const {
     likeStatus,
@@ -12,6 +12,7 @@ function Home({ profileData }) {
     setLikeCount,
     commentsList,
     setCommentsList,
+    profileData,
   } = useContext(HomeContext);
 
   const navigate = useNavigate();
@@ -35,7 +36,6 @@ function Home({ profileData }) {
     }
   };
   const [comment, setComment] = useState(""); // 현재 입력 중인 댓글
-  //const [commentsList, setCommentsList] = useState([]); // 댓글 목록
 
   // 댓글 입력 이벤트 핸들러
   const handleCommentChange = (event) => {

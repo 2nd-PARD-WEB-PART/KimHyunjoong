@@ -29,6 +29,8 @@ function App() {
         setLikeCount,
         commentsList,
         setCommentsList,
+        profileData,
+        setProfileData,
       }}
     >
       <Router>
