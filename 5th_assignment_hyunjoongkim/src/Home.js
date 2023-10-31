@@ -109,17 +109,26 @@ function Home() {
         </Row1>
         <Row2>
           <InnerRow1>
-            <img
-              src={process.env.PUBLIC_URL + "/circle.png"}
-              alt="원형"
-              width="8%"
-            />
-            <Shyboy
-              src={process.env.PUBLIC_URL + "/supershy.png"}
-              alt="원형"
-              width="2.4%"
-            />
-            <PostNickName>supershyNewJeans</PostNickName>
+            <PostMain>
+              <img
+                src={process.env.PUBLIC_URL + "/circle.png"}
+                alt="원형"
+                width="8%"
+              />
+              <Shyboy
+                src={process.env.PUBLIC_URL + "/supershy.png"}
+                alt="원형"
+                width="2.2%"
+              />
+              <PostNickName>supershyNewJeans</PostNickName>
+            </PostMain>
+            <MoreDiv>
+              <img
+                src={process.env.PUBLIC_URL + "/More.png"}
+                alt="More Icon"
+                width="90%"
+              />
+            </MoreDiv>
           </InnerRow1>
           <InnerRow2>
             <img
@@ -172,7 +181,6 @@ function Home() {
               <Time>1 HOUR AGO</Time>
             </CommentTable>
           </InnerRow5>
-
           <InnerRow6>
             <Emoji
               src={process.env.PUBLIC_URL + "/Emoji.png"}
@@ -300,11 +308,21 @@ const Row2 = styled.div`
 const InnerRow1 = styled.div`
   display: flex;
   height: 50px;
-  padding-left: 3%;
   align-items: center;
+  border-bottom: 1px #dbdbdb solid;
+`;
+
+const PostMain = styled.div`
+  display: flex;
+  padding-left: 3%;
   font-weight: 500;
   font-size: 14px;
-  border-bottom: 1px #dbdbdb solid;
+  width: 90%;
+`;
+
+const MoreDiv = styled.div`
+  padding-top: 1%;
+  justify-content: right;
 `;
 
 const InnerRow2 = styled.div`
@@ -348,11 +366,13 @@ const InnerRow6 = styled.div`
 
 const Shyboy = styled.img`
   position: absolute;
-  margin-left: 0.3%;
+  margin-left: 0.28%;
+  margin-top: 0.24%;
 `;
 
 const PostNickName = styled.div`
   margin-left: 5%;
+  margin-top: 2%;
 `;
 
 const Like = styled.img`
