@@ -35,17 +35,9 @@ function App() {
     >
       <Router>
         <Routes>
-          <Route path="/" element={<MyPage profileData={profileData} />} />
-          <Route
-            path="/EditProfile"
-            element={
-              <EditProfile
-                profileData={profileData}
-                setProfileData={setProfileData}
-              />
-            }
-          />
-          <Route path="/Home" element={<Home profileData={profileData} />} />
+          <Route path="/" element={<MyPage />} />
+          <Route path="/EditProfile" element={<EditProfile />} />
+          <Route path="/Home" element={<Home />} />
         </Routes>
       </Router>
     </HomeContext.Provider>
