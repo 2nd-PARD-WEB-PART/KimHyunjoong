@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import HomeContext from "./HomeContext";
 import { useMediaQuery } from "react-responsive";
 
+//깃허브 과제 파일
+
 function Home() {
   // Context를 사용하여 App.js에 정의한 provider의 value들을 전역 상태로 관리
   const {
@@ -94,7 +96,7 @@ function Home() {
                   <MobileShyboy
                     src={process.env.PUBLIC_URL + "/supershy.png"}
                     alt="원형"
-                    width="2.2%"
+                    width="4.7%"
                   />
                   <MobilePostNickName>supershyNewJeans</MobilePostNickName>
                 </MobilePostMain>
@@ -178,14 +180,14 @@ function Home() {
           </MobileMain>
           <MobileLowRow>
             {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
-            <MobileLogoDiv>
+            <MobileHomeButton>
               <img
-                src={process.env.PUBLIC_URL + "/MobileLogo.svg"}
-                alt="인스타그램 로고"
-                width="20vw"
+                src={process.env.PUBLIC_URL + "/home.svg"}
+                alt="홈 로고"
+                width="17vw"
                 onClick={home}
               />
-            </MobileLogoDiv>
+            </MobileHomeButton>
             <MobileLow>
               <img
                 src={process.env.PUBLIC_URL + "/NewPosts.svg"}
@@ -520,17 +522,26 @@ const MobileLogoDiv = styled.div`
   //인스타그램 로고 아이콘 왼쪽정렬 및 여백 조절
   padding-top: 0.4em;
   padding-bottom: 0.3em;
-  margin-left: 32%;
+  margin-left: 10%;
   height: auto;
   cursor: pointer;
+`;
+const MobileHomeButton = styled.button`
+  //인스타그램 로고 아이콘 왼쪽정렬 및 여백 조절
+  padding-top: 0.4em;
+  padding-bottom: 0.3em;
+  margin-left: 10%;
+  height: auto;
+  cursor: pointer;
+  background-color: white;
+  border: solid white;
 `;
 
 const MobileActivityButton = styled.button`
   //액티비티 버튼
-  bottom: 37%;
-  position: relative;
   background-color: white;
   border: solid white;
+  margin-left: 350%;
 `;
 const MobileProfileImage = styled.img`
   //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
@@ -538,18 +549,19 @@ const MobileProfileImage = styled.img`
   height: 1.5em;
   border-radius: 22px;
   cursor: pointer;
+  margin-left: 450%;
 `;
 
 const MobileSearch = styled.div`
   display: flex;
-  width: 5%;
+  width: 10%;
   padding: 4px 72px 4px 71px;
   justify-content: center;
   align-items: center;
   border-radius: 3px;
   border: 1px solid var(--Border-Color, #dbdbdb);
   background: #efefef;
-  margin-left: 7%;
+  margin-left: 17%;
   color: #8e8e8e;
 `;
 
@@ -560,24 +572,24 @@ const MobileLow = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 3px;
-  margin-left: 7%;
+  margin-left: 15%;
   color: #8e8e8e;
 `;
 
 const MobileMain = styled.div`
   display: block;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10%;
+  margin-bottom: 9%;
   height: 700px;
 `;
 
 const MobileRow2 = styled.div`
   display: block;
-  width: 63%;
+  width: 100%;
   padding-bottom: 10px;
   border: 1px #dbdbdb solid;
-  margin: 0 auto;
 `;
 const MobileInnerRow1 = styled.div`
   display: flex;
@@ -640,8 +652,8 @@ const MobileInnerRow6 = styled.div`
 
 const MobileShyboy = styled.img`
   position: absolute;
-  margin-left: 0.28%;
-  margin-top: 0.24%;
+  margin-left: 0.5%;
+  margin-top: 0.5%;
 `;
 
 const MobilePostNickName = styled.div`
@@ -691,7 +703,7 @@ const MobileEmoji = styled.img`
 `;
 
 const MobileCommentInput = styled.input`
-  width: 320px;
+  width: 250px;
   height: 30px;
   cursor: pointer;
   border: none;
@@ -725,6 +737,7 @@ const MobileLowRow = styled.button`
   width: 100%;
   align-items: center; //포함된 내용을 세로 중앙정렬
   bottom: 0;
+  position: sticky;
 `;
 
 const DesktopMainRow = styled.div`
@@ -1148,7 +1161,7 @@ const Emoji = styled.img`
 `;
 
 const CommentInput = styled.input`
-  width: 320px;
+  width: 350px;
   height: 30px;
   cursor: pointer;
   border: none;
