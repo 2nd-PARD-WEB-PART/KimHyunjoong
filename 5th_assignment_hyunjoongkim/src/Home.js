@@ -703,7 +703,7 @@ const MobileEmoji = styled.img`
 `;
 
 const MobileCommentInput = styled.input`
-  width: 250px;
+  width: 220px;
   height: 30px;
   cursor: pointer;
   border: none;
@@ -924,7 +924,7 @@ const DesktopEmoji = styled.img`
 `;
 
 const DesktopCommentInput = styled.input`
-  width: 320px;
+  width: 190px;
   height: 30px;
   cursor: pointer;
   border: none;
