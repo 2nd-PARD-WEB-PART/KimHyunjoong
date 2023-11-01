@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import HomeContext from "./HomeContext";
 import { useMediaQuery } from "react-responsive";
 
-//깃허브 과제 파일
-
 function Home() {
   // Context를 사용하여 App.js에 정의한 provider의 value들을 전역 상태로 관리
   const {
@@ -56,11 +54,16 @@ function Home() {
     }
   };
 
+  //Media Query 사용
+  //450이하는 모바일 버전
+  //750까지는 태블릿 버전
+  //750이상은 데스크탑 버전
   const isMobile = useMediaQuery({ maxWidth: 450 });
   const isDesktop = useMediaQuery({ minWidth: 750 });
 
   return (
     <div>
+      {/*3항 연산자를 활용한 MediaQuery 적용하여 반응형 페이지 성공*/}
       {isMobile ? (
         <div>
           <MobileMainRow>
@@ -161,20 +164,22 @@ function Home() {
                 </MobileCommentTable>
               </MobileInnerRow5>
               <MobileInnerRow6>
-                <MobileEmoji
-                  src={process.env.PUBLIC_URL + "/Emoji.png"}
-                  alt="이모티콘"
-                  width="5%"
-                />
-                <form onSubmit={handleCommentSubmit}>
-                  <MobileCommentInput
-                    type="text"
-                    value={comment}
-                    onChange={handleCommentChange}
-                    placeholder="댓글 달기..."
+                <MobileCommentDiv>
+                  <MobileEmoji
+                    src={process.env.PUBLIC_URL + "/Emoji.png"}
+                    alt="이모티콘"
+                    width="5%"
                   />
-                  <MobilePostButton type="submit">게시</MobilePostButton>
-                </form>
+                  <form onSubmit={handleCommentSubmit}>
+                    <MobileCommentInput
+                      type="text"
+                      value={comment}
+                      onChange={handleCommentChange}
+                      placeholder="댓글 달기..."
+                    />
+                  </form>
+                </MobileCommentDiv>
+                <MobilePostButton type="submit">게시</MobilePostButton>
               </MobileInnerRow6>
             </MobileRow2>
           </MobileMain>
@@ -329,20 +334,23 @@ function Home() {
                 </DesktopCommentTable>
               </DesktopInnerRow5>
               <DesktopInnerRow6>
-                <DesktopEmoji
-                  src={process.env.PUBLIC_URL + "/Emoji.png"}
-                  alt="이모티콘"
-                  width="5%"
-                />
-                <form onSubmit={handleCommentSubmit}>
-                  <DesktopCommentInput
-                    type="text"
-                    value={comment}
-                    onChange={handleCommentChange}
-                    placeholder="댓글 달기..."
+                <DesktopCommentDiv>
+                  <DesktopEmoji
+                    src={process.env.PUBLIC_URL + "/Emoji.png"}
+                    alt="이모티콘"
+                    width="20vw"
+                    height="20vh"
                   />
-                  <DesktopPostButton type="submit">게시</DesktopPostButton>
-                </form>
+                  <form onSubmit={handleCommentSubmit}>
+                    <DesktopCommentInput
+                      type="text"
+                      value={comment}
+                      onChange={handleCommentChange}
+                      placeholder="댓글 달기..."
+                    />
+                  </form>
+                </DesktopCommentDiv>
+                <DesktopPostButton type="submit">게시</DesktopPostButton>
               </DesktopInnerRow6>
             </DesktopRow2>
           </DesktopMain>
@@ -415,7 +423,7 @@ function Home() {
                   <Shyboy
                     src={process.env.PUBLIC_URL + "/supershy.png"}
                     alt="원형"
-                    width="2.2%"
+                    width="3.5%"
                   />
                   <PostNickName>supershyNewJeans</PostNickName>
                 </PostMain>
@@ -480,20 +488,23 @@ function Home() {
                 </CommentTable>
               </InnerRow5>
               <InnerRow6>
-                <Emoji
-                  src={process.env.PUBLIC_URL + "/Emoji.png"}
-                  alt="이모티콘"
-                  width="5%"
-                />
-                <form onSubmit={handleCommentSubmit}>
-                  <CommentInput
-                    type="text"
-                    value={comment}
-                    onChange={handleCommentChange}
-                    placeholder="댓글 달기..."
+                <CommentDiv>
+                  <Emoji
+                    src={process.env.PUBLIC_URL + "/Emoji.png"}
+                    alt="이모티콘"
+                    width="23vw"
+                    height="23vh"
                   />
-                  <PostButton type="submit">게시</PostButton>
-                </form>
+                  <form onSubmit={handleCommentSubmit}>
+                    <CommentInput
+                      type="text"
+                      value={comment}
+                      onChange={handleCommentChange}
+                      placeholder="댓글 달기..."
+                    />
+                  </form>
+                </CommentDiv>
+                <PostButton type="submit">게시</PostButton>
               </InnerRow6>
             </Row2>
           </Main>
@@ -703,8 +714,8 @@ const MobileEmoji = styled.img`
 `;
 
 const MobileCommentInput = styled.input`
-  width: 220px;
   height: 30px;
+  width: 100%;
   cursor: pointer;
   border: none;
   &:focus {
@@ -738,6 +749,12 @@ const MobileLowRow = styled.button`
   align-items: center; //포함된 내용을 세로 중앙정렬
   bottom: 0;
   position: sticky;
+`;
+
+const MobileCommentDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 80%;
 `;
 
 const DesktopMainRow = styled.div`
@@ -924,8 +941,8 @@ const DesktopEmoji = styled.img`
 `;
 
 const DesktopCommentInput = styled.input`
-  width: 190px;
   height: 30px;
+  width: 100%;
   cursor: pointer;
   border: none;
   &:focus {
@@ -944,6 +961,12 @@ const DesktopPostButton = styled.button`
   cursor: pointer;
   background-color: white;
   border: none;
+`;
+
+const DesktopCommentDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 80%;
 `;
 
 const MainRow = styled.div`
@@ -1014,13 +1037,39 @@ const ProfileImageExtra = styled.img`
 const Search = styled.div`
   display: flex;
   width: 5%;
-  padding: 4px 72px 4px 71px;
+
+  /*css media query를 이용한 상단 검색창 padding, margin-left값 조절*/
+  @media screen and (min-width: 451px) and (max-width: 500px) {
+    padding: 3px 15px 3px 15px;
+    margin-left: 1%;
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 560px) {
+    padding: 3px 40px 3px 40px;
+    margin-left: 3px;
+  }
+
+  @media screen and (min-width: 561px) and (max-width: 600px) {
+    padding: 3px 40px 3px 40px;
+    margin-left: 3px;
+  }
+
+  @media screen and (min-width: 601px) and (max-width: 700px) {
+    padding: 3px 70px 3px 70px;
+    margin-left: 2%;
+  }
+
+  @media screen and (min-width: 701px) and (max-width: 749px) {
+    padding: 3px 73px 3px 73px;
+    margin-left: 2%;
+  }
+
   justify-content: center;
   align-items: center;
   border-radius: 3px;
   border: 1px solid var(--Border-Color, #dbdbdb);
   background: #efefef;
-  margin-left: 13%;
+  font-size: 12px;
   color: #8e8e8e;
 `;
 
@@ -1045,7 +1094,7 @@ const Row1 = styled.div`
 `;
 const Row2 = styled.div`
   display: block;
-  width: 63%;
+  width: 100%;
   padding-bottom: 10px;
   border: 1px #dbdbdb solid;
 `;
@@ -1106,12 +1155,13 @@ const InnerRow6 = styled.div`
   padding-top: 3%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const Shyboy = styled.img`
   position: absolute;
-  margin-left: 0.28%;
-  margin-top: 0.24%;
+  margin-left: 0.4%;
+  margin-top: 0.4%;
 `;
 
 const PostNickName = styled.div`
@@ -1161,8 +1211,8 @@ const Emoji = styled.img`
 `;
 
 const CommentInput = styled.input`
-  width: 350px;
   height: 30px;
+  width: 100%;
   cursor: pointer;
   border: none;
   &:focus {
@@ -1179,8 +1229,14 @@ const PostButton = styled.button`
   height: 30px;
   width: 50px;
   cursor: pointer;
-  background-color: white;
   border: none;
+  background-color: white;
+`;
+
+const CommentDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 80%;
 `;
 
 export default Home;
