@@ -59,7 +59,7 @@ function Home() {
   //750까지는 태블릿 버전
   //750이상은 데스크탑 버전
   const isMobile = useMediaQuery({ maxWidth: 450 });
-  const isDesktop = useMediaQuery({ minWidth: 750 });
+  const isTablet = useMediaQuery({ minWidth: 750 });
 
   return (
     <div>
@@ -164,22 +164,22 @@ function Home() {
                 </MobileCommentTable>
               </MobileInnerRow5>
               <MobileInnerRow6>
-                <MobileCommentDiv>
-                  <MobileEmoji
-                    src={process.env.PUBLIC_URL + "/Emoji.png"}
-                    alt="이모티콘"
-                    width="5%"
-                  />
-                  <form onSubmit={handleCommentSubmit}>
+                <MobileForm onSubmit={handleCommentSubmit}>
+                  <MobileCommentDiv>
+                    <MobileEmoji
+                      src={process.env.PUBLIC_URL + "/Emoji.png"}
+                      alt="이모티콘"
+                      width="8%"
+                    />
                     <MobileCommentInput
                       type="text"
                       value={comment}
                       onChange={handleCommentChange}
                       placeholder="댓글 달기..."
                     />
-                  </form>
-                </MobileCommentDiv>
-                <MobilePostButton type="submit">게시</MobilePostButton>
+                  </MobileCommentDiv>
+                  <MobilePostButton type="submit">게시</MobilePostButton>
+                </MobileForm>
               </MobileInnerRow6>
             </MobileRow2>
           </MobileMain>
@@ -212,151 +212,9 @@ function Home() {
             </MobileMenuDiv>
           </MobileLowRow>
         </div>
-      ) : isDesktop ? (
+      ) : isTablet ? (
         <div>
-          <DesktopMainRow>
-            {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
-            <DesktopLogoDiv>
-              <img
-                src={process.env.PUBLIC_URL + "/Logo.svg"}
-                alt="인스타그램 로고"
-                width="100vw"
-                onClick={home}
-              />
-            </DesktopLogoDiv>
-            <DesktopMenuDiv>
-              <DesktopHomeButton>
-                <img
-                  src={process.env.PUBLIC_URL + "/home.svg"}
-                  alt="메뉴 버튼 이미지"
-                  width="17vh"
-                  onClick={home}
-                />
-              </DesktopHomeButton>
-              <DesktopNewButton>
-                <img
-                  src={process.env.PUBLIC_URL + "/NewPosts.svg"}
-                  alt="메뉴 버튼 이미지"
-                  width="17vh"
-                />
-              </DesktopNewButton>
-              <DesktopActivityButton>
-                <img
-                  src={process.env.PUBLIC_URL + "/ActivityFeed.svg"}
-                  alt="메뉴 버튼 이미지"
-                  width="17vh"
-                />
-              </DesktopActivityButton>
-              <DesktopProfileImage
-                src={
-                  profileData.profileImg ||
-                  process.env.PUBLIC_URL + "/profile.jpg"
-                }
-                alt="프로필 이미지"
-                onClick={profile}
-              />
-            </DesktopMenuDiv>
-          </DesktopMainRow>
-          <DesktopMain>
-            <DesktopRow2>
-              <DesktopInnerRow1>
-                <DesktopPostMain>
-                  <img
-                    src={process.env.PUBLIC_URL + "/circle.png"}
-                    alt="원형"
-                    width="8%"
-                  />
-                  <DesktopShyboy
-                    src={process.env.PUBLIC_URL + "/supershy.png"}
-                    alt="원형"
-                    width="2.2%"
-                  />
-                  <DesktopPostNickName>supershyNewJeans</DesktopPostNickName>
-                </DesktopPostMain>
-                <DesktopMoreDiv>
-                  <img
-                    src={process.env.PUBLIC_URL + "/More.png"}
-                    alt="More Icon"
-                    width="90%"
-                  />
-                </DesktopMoreDiv>
-              </DesktopInnerRow1>
-              <DesktopInnerRow2>
-                <img
-                  src={process.env.PUBLIC_URL + "/Photo.jpeg"}
-                  alt="포스트 사진"
-                  width="99.5%"
-                />
-              </DesktopInnerRow2>
-              <DesktopInnerRow3>
-                <DesktopLeftIcon>
-                  <DesktopLike
-                    src={
-                      process.env.PUBLIC_URL +
-                      (likeStatus ? "/RedLike.png" : "/Like.png")
-                    }
-                    alt="좋아요 아이콘"
-                    onClick={handleLikeClick}
-                  />
-                  <DesktopComment
-                    src={process.env.PUBLIC_URL + "/Comment.png"}
-                    alt="댓글 아이콘"
-                    width="10%"
-                  />
-                  <DesktopSharePosts
-                    src={process.env.PUBLIC_URL + "/SharePosts.png"}
-                    alt="공유 아이콘"
-                    width="10%"
-                  />
-                </DesktopLeftIcon>
-                <DesktopRightIcon>
-                  <DesktopSave
-                    src={process.env.PUBLIC_URL + "/Save.png"}
-                    alt="저장 아이콘"
-                    width="10%"
-                  />
-                </DesktopRightIcon>
-              </DesktopInnerRow3>
-              <DesktopInnerRow4>{`좋아요 ${likeCount}개`}</DesktopInnerRow4>
-              <DesktopInnerRow5>
-                <DesktopCommentTable>
-                  <tbody>
-                    {/* 사용자가 추가한 댓글 출력 */}
-                    {commentsList.map((item, index) => (
-                      <tr key={index}>
-                        <td>{profileData.nickname}</td>{" "}
-                        {/* 프로필 닉네임 출력 */}
-                        <td>{item}</td> {/* 해당 댓글 내용 출력 */}
-                      </tr>
-                    ))}
-                  </tbody>
-                  <DesktopTime>1 HOUR AGO</DesktopTime>
-                </DesktopCommentTable>
-              </DesktopInnerRow5>
-              <DesktopInnerRow6>
-                <DesktopCommentDiv>
-                  <DesktopEmoji
-                    src={process.env.PUBLIC_URL + "/Emoji.png"}
-                    alt="이모티콘"
-                    width="20vw"
-                    height="20vh"
-                  />
-                  <form onSubmit={handleCommentSubmit}>
-                    <DesktopCommentInput
-                      type="text"
-                      value={comment}
-                      onChange={handleCommentChange}
-                      placeholder="댓글 달기..."
-                    />
-                  </form>
-                </DesktopCommentDiv>
-                <DesktopPostButton type="submit">게시</DesktopPostButton>
-              </DesktopInnerRow6>
-            </DesktopRow2>
-          </DesktopMain>
-        </div>
-      ) : (
-        <div>
+          {" "}
           <MainRow>
             {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
             <LogoDiv>
@@ -423,7 +281,7 @@ function Home() {
                   <Shyboy
                     src={process.env.PUBLIC_URL + "/supershy.png"}
                     alt="원형"
-                    width="3.5%"
+                    width="2.2%"
                   />
                   <PostNickName>supershyNewJeans</PostNickName>
                 </PostMain>
@@ -488,26 +346,164 @@ function Home() {
                 </CommentTable>
               </InnerRow5>
               <InnerRow6>
-                <CommentDiv>
+                <Form onSubmit={handleCommentSubmit}>
                   <Emoji
                     src={process.env.PUBLIC_URL + "/Emoji.png"}
                     alt="이모티콘"
-                    width="23vw"
-                    height="23vh"
+                    width="7%"
+                    height="7%"
                   />
-                  <form onSubmit={handleCommentSubmit}>
-                    <CommentInput
-                      type="text"
-                      value={comment}
-                      onChange={handleCommentChange}
-                      placeholder="댓글 달기..."
-                    />
-                  </form>
-                </CommentDiv>
-                <PostButton type="submit">게시</PostButton>
+                  <CommentInput
+                    type="text"
+                    value={comment}
+                    onChange={handleCommentChange}
+                    placeholder="댓글 달기..."
+                  />
+                  <PostButton type="submit">게시</PostButton>
+                </Form>
               </InnerRow6>
             </Row2>
           </Main>
+        </div>
+      ) : (
+        <div>
+          <TabletMainRow>
+            {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
+            <TabletLogoDiv>
+              <img
+                src={process.env.PUBLIC_URL + "/Logo.svg"}
+                alt="인스타그램 로고"
+                width="100vw"
+                onClick={home}
+              />
+            </TabletLogoDiv>
+            <TabletMenuDiv>
+              <TabletHomeButton>
+                <img
+                  src={process.env.PUBLIC_URL + "/home.svg"}
+                  alt="메뉴 버튼 이미지"
+                  width="17vh"
+                  onClick={home}
+                />
+              </TabletHomeButton>
+              <TabletNewButton>
+                <img
+                  src={process.env.PUBLIC_URL + "/NewPosts.svg"}
+                  alt="메뉴 버튼 이미지"
+                  width="17vh"
+                />
+              </TabletNewButton>
+              <TabletActivityButton>
+                <img
+                  src={process.env.PUBLIC_URL + "/ActivityFeed.svg"}
+                  alt="메뉴 버튼 이미지"
+                  width="17vh"
+                />
+              </TabletActivityButton>
+              <TabletProfileImage
+                src={
+                  profileData.profileImg ||
+                  process.env.PUBLIC_URL + "/profile.jpg"
+                }
+                alt="프로필 이미지"
+                onClick={profile}
+              />
+            </TabletMenuDiv>
+          </TabletMainRow>
+          <TabletMain>
+            <TabletRow2>
+              <TabletInnerRow1>
+                <TabletPostMain>
+                  <img
+                    src={process.env.PUBLIC_URL + "/circle.png"}
+                    alt="원형"
+                    width="8%"
+                  />
+                  <TabletShyboy
+                    src={process.env.PUBLIC_URL + "/supershy.png"}
+                    alt="원형"
+                    width="3.5%"
+                  />
+                  <TabletPostNickName>supershyNewJeans</TabletPostNickName>
+                </TabletPostMain>
+                <TabletMoreDiv>
+                  <img
+                    src={process.env.PUBLIC_URL + "/More.png"}
+                    alt="More Icon"
+                    width="90%"
+                  />
+                </TabletMoreDiv>
+              </TabletInnerRow1>
+              <TabletInnerRow2>
+                <img
+                  src={process.env.PUBLIC_URL + "/Photo.jpeg"}
+                  alt="포스트 사진"
+                  width="99.5%"
+                />
+              </TabletInnerRow2>
+              <TabletInnerRow3>
+                <TabletLeftIcon>
+                  <TabletLike
+                    src={
+                      process.env.PUBLIC_URL +
+                      (likeStatus ? "/RedLike.png" : "/Like.png")
+                    }
+                    alt="좋아요 아이콘"
+                    onClick={handleLikeClick}
+                  />
+                  <TabletComment
+                    src={process.env.PUBLIC_URL + "/Comment.png"}
+                    alt="댓글 아이콘"
+                    width="10%"
+                  />
+                  <TabletSharePosts
+                    src={process.env.PUBLIC_URL + "/SharePosts.png"}
+                    alt="공유 아이콘"
+                    width="10%"
+                  />
+                </TabletLeftIcon>
+                <TabletRightIcon>
+                  <TabletSave
+                    src={process.env.PUBLIC_URL + "/Save.png"}
+                    alt="저장 아이콘"
+                    width="10%"
+                  />
+                </TabletRightIcon>
+              </TabletInnerRow3>
+              <TabletInnerRow4>{`좋아요 ${likeCount}개`}</TabletInnerRow4>
+              <TabletInnerRow5>
+                <TabletCommentTable>
+                  <tbody>
+                    {/* 사용자가 추가한 댓글 출력 */}
+                    {commentsList.map((item, index) => (
+                      <tr key={index}>
+                        <td>{profileData.nickname}</td>{" "}
+                        {/* 프로필 닉네임 출력 */}
+                        <td>{item}</td> {/* 해당 댓글 내용 출력 */}
+                      </tr>
+                    ))}
+                  </tbody>
+                  <TabletTime>1 HOUR AGO</TabletTime>
+                </TabletCommentTable>
+              </TabletInnerRow5>
+              <TabletInnerRow6>
+                <TabletForm onSubmit={handleCommentSubmit}>
+                  <TabletEmoji
+                    src={process.env.PUBLIC_URL + "/Emoji.png"}
+                    alt="이모티콘"
+                    width="7%"
+                  />
+                  <TabletCommentInput
+                    type="text"
+                    value={comment}
+                    onChange={handleCommentChange}
+                    placeholder="댓글 달기..."
+                  />
+                  <TabletPostButton type="submit">게시</TabletPostButton>
+                </TabletForm>
+              </TabletInnerRow6>
+            </TabletRow2>
+          </TabletMain>
         </div>
       )}
     </div>
@@ -715,7 +711,7 @@ const MobileEmoji = styled.img`
 
 const MobileCommentInput = styled.input`
   height: 30px;
-  width: 100%;
+  width: 80%;
   cursor: pointer;
   border: none;
   &:focus {
@@ -730,7 +726,7 @@ const MobilePostButton = styled.button`
   font-weight: 500;
   line-height: 18px;
   height: 30px;
-  width: 50px;
+  width: 20%;
   cursor: pointer;
   background-color: white;
   border: none;
@@ -754,34 +750,40 @@ const MobileLowRow = styled.button`
 const MobileCommentDiv = styled.div`
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 100%;
 `;
 
-const DesktopMainRow = styled.div`
+const MobileForm = styled.form`
+  display: flex;
+  align-items: end;
+  width: 100%;
+`;
+
+const TabletMainRow = styled.div`
   padding-top: 0.5em; //상 내부 여백 설정
   display: flex; //display를 flex로 함으로서 내용을 가로정렬
   border-bottom: 1px solid #dbdbdb;
   width: 100%;
   align-items: center; //포함된 내용을 세로 중앙정렬
 `;
-const DesktopMenuDiv = styled.div`
+const TabletMenuDiv = styled.div`
   //메뉴 아이콘 오른쪽 정렬 및 여백 조절
   padding-top: 0.4em;
   padding-bottom: 0.3em;
   height: auto;
   position: absolute; //메뉴 아이콘을 absolute로 변경하여 인스타그램 로고 아이콘과 같은 비율로 오른쪽으로부터 간격 띄움
-  right: 22%;
+  right: 5%;
 `;
-const DesktopLogoDiv = styled.div`
+const TabletLogoDiv = styled.div`
   //인스타그램 로고 아이콘 왼쪽정렬 및 여백 조절
   padding-top: 0.4em;
   padding-bottom: 0.3em;
-  margin-left: 32%;
+  margin-left: 20%;
   height: auto;
   cursor: pointer;
 `;
 
-const DesktopHomeButton = styled.button`
+const TabletHomeButton = styled.button`
   //홈버튼
   bottom: 37%;
   position: relative;
@@ -789,21 +791,21 @@ const DesktopHomeButton = styled.button`
   border: solid white;
   cursor: pointer;
 `;
-const DesktopNewButton = styled.button`
+const TabletNewButton = styled.button`
   //새로운 포스트 버튼
   bottom: 37%;
   position: relative;
   background-color: white;
   border: solid white;
 `;
-const DesktopActivityButton = styled.button`
+const TabletActivityButton = styled.button`
   //액티비티 버튼
   bottom: 37%;
   position: relative;
   background-color: white;
   border: solid white;
 `;
-const DesktopProfileImage = styled.img`
+const TabletProfileImage = styled.img`
   //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
   width: 1.1em;
   height: 1.1em;
@@ -814,7 +816,7 @@ const DesktopProfileImage = styled.img`
   cursor: pointer;
 `;
 
-const DesktopMain = styled.div`
+const TabletMain = styled.div`
   display: block;
   margin-left: 20%;
   margin-right: 20%;
@@ -822,21 +824,21 @@ const DesktopMain = styled.div`
   height: 700px;
 `;
 
-const DesktopRow2 = styled.div`
+const TabletRow2 = styled.div`
   display: block;
-  width: 63%;
+  width: 100%;
   padding-bottom: 10px;
   border: 1px #dbdbdb solid;
   margin: 0 auto;
 `;
-const DesktopInnerRow1 = styled.div`
+const TabletInnerRow1 = styled.div`
   display: flex;
   height: 50px;
   align-items: center;
   border-bottom: 1px #dbdbdb solid;
 `;
 
-const DesktopPostMain = styled.div`
+const TabletPostMain = styled.div`
   display: flex;
   padding-left: 3%;
   font-weight: 500;
@@ -844,24 +846,24 @@ const DesktopPostMain = styled.div`
   width: 90%;
 `;
 
-const DesktopMoreDiv = styled.div`
+const TabletMoreDiv = styled.div`
   padding-top: 1%;
   justify-content: right;
 `;
 
-const DesktopInnerRow2 = styled.div`
+const TabletInnerRow2 = styled.div`
   display: flex;
   overflow: hidden;
   margin-top: 0.3%;
   justify-content: center;
 `;
-const DesktopInnerRow3 = styled.div`
+const TabletInnerRow3 = styled.div`
   display: flex;
   margin-top: 3%;
   margin-left: 3%;
   margin-right: 3%;
 `;
-const DesktopInnerRow4 = styled.div`
+const TabletInnerRow4 = styled.div`
   margin-left: 3%;
   font-size: 14px;
   font-style: normal;
@@ -871,7 +873,7 @@ const DesktopInnerRow4 = styled.div`
   font-weight: 500;
   font-size: 14px;
 `;
-const DesktopInnerRow5 = styled.div`
+const TabletInnerRow5 = styled.div`
   display: flex;
   padding-left: 2.5%;
   font-weight: 500;
@@ -879,7 +881,7 @@ const DesktopInnerRow5 = styled.div`
   margin-top: 4%;
   border-bottom: 1px #dbdbdb solid;
 `;
-const DesktopInnerRow6 = styled.div`
+const TabletInnerRow6 = styled.div`
   padding-left: 2.5%;
   font-weight: 500;
   font-size: 14px;
@@ -888,44 +890,44 @@ const DesktopInnerRow6 = styled.div`
   align-items: center;
 `;
 
-const DesktopShyboy = styled.img`
+const TabletShyboy = styled.img`
   position: absolute;
-  margin-left: 0.28%;
-  margin-top: 0.24%;
+  margin-left: 0.4%;
+  margin-top: 0.35%;
 `;
 
-const DesktopPostNickName = styled.div`
+const TabletPostNickName = styled.div`
   margin-left: 5%;
   margin-top: 2%;
 `;
 
-const DesktopLike = styled.img`
+const TabletLike = styled.img`
   margin-right: 5%;
   cursor: pointer;
 `;
-const DesktopComment = styled.img`
+const TabletComment = styled.img`
   margin-right: 5%;
 `;
-const DesktopSharePosts = styled.img``;
-const DesktopSave = styled.img`
+const TabletSharePosts = styled.img``;
+const TabletSave = styled.img`
   margin-right: 3%;
 `;
 
-const DesktopLeftIcon = styled.div`
+const TabletLeftIcon = styled.div`
   width: 50%;
   display: flex;
 `;
-const DesktopRightIcon = styled.div`
+const TabletRightIcon = styled.div`
   width: 50%;
   display: flex;
   justify-content: right;
 `;
-const DesktopCommentTable = styled.table`
+const TabletCommentTable = styled.table`
   td {
     padding-right: 25px; // 셀 안쪽 여백 설정
   }
 `;
-const DesktopTime = styled.div`
+const TabletTime = styled.div`
   color: var(--Gray, #8e8e8e);
   font-size: 10px;
   font-style: normal;
@@ -936,13 +938,13 @@ const DesktopTime = styled.div`
   margin-top: 5%;
 `;
 
-const DesktopEmoji = styled.img`
+const TabletEmoji = styled.img`
   margin-right: 5%;
 `;
 
-const DesktopCommentInput = styled.input`
+const TabletCommentInput = styled.input`
+  width: 80%;
   height: 30px;
-  width: 100%;
   cursor: pointer;
   border: none;
   &:focus {
@@ -950,7 +952,7 @@ const DesktopCommentInput = styled.input`
   }
 `;
 
-const DesktopPostButton = styled.button`
+const TabletPostButton = styled.button`
   color: #0095f6;
   font-size: 14px;
   font-style: normal;
@@ -963,10 +965,10 @@ const DesktopPostButton = styled.button`
   border: none;
 `;
 
-const DesktopCommentDiv = styled.div`
+const TabletForm = styled.form`
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 100%;
 `;
 
 const MainRow = styled.div`
@@ -1037,39 +1039,13 @@ const ProfileImageExtra = styled.img`
 const Search = styled.div`
   display: flex;
   width: 5%;
-
-  /*css media query를 이용한 상단 검색창 padding, margin-left값 조절*/
-  @media screen and (min-width: 451px) and (max-width: 500px) {
-    padding: 3px 15px 3px 15px;
-    margin-left: 1%;
-  }
-
-  @media screen and (min-width: 501px) and (max-width: 560px) {
-    padding: 3px 40px 3px 40px;
-    margin-left: 3px;
-  }
-
-  @media screen and (min-width: 561px) and (max-width: 600px) {
-    padding: 3px 40px 3px 40px;
-    margin-left: 3px;
-  }
-
-  @media screen and (min-width: 601px) and (max-width: 700px) {
-    padding: 3px 70px 3px 70px;
-    margin-left: 2%;
-  }
-
-  @media screen and (min-width: 701px) and (max-width: 749px) {
-    padding: 3px 73px 3px 73px;
-    margin-left: 2%;
-  }
-
+  padding: 4px 72px 4px 71px;
   justify-content: center;
   align-items: center;
   border-radius: 3px;
   border: 1px solid var(--Border-Color, #dbdbdb);
   background: #efefef;
-  font-size: 12px;
+  margin-left: 7%;
   color: #8e8e8e;
 `;
 
@@ -1094,7 +1070,7 @@ const Row1 = styled.div`
 `;
 const Row2 = styled.div`
   display: block;
-  width: 100%;
+  width: 63%;
   padding-bottom: 10px;
   border: 1px #dbdbdb solid;
 `;
@@ -1155,13 +1131,12 @@ const InnerRow6 = styled.div`
   padding-top: 3%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 `;
 
 const Shyboy = styled.img`
   position: absolute;
-  margin-left: 0.4%;
-  margin-top: 0.4%;
+  margin-left: 0.28%;
+  margin-top: 0.24%;
 `;
 
 const PostNickName = styled.div`
@@ -1211,8 +1186,8 @@ const Emoji = styled.img`
 `;
 
 const CommentInput = styled.input`
+  width: 80%;
   height: 30px;
-  width: 100%;
   cursor: pointer;
   border: none;
   &:focus {
@@ -1229,14 +1204,14 @@ const PostButton = styled.button`
   height: 30px;
   width: 50px;
   cursor: pointer;
-  border: none;
   background-color: white;
+  border: none;
 `;
 
-const CommentDiv = styled.div`
+const Form = styled.form`
   display: flex;
+  width: 100%;
   align-items: center;
-  width: 80%;
 `;
 
 export default Home;
