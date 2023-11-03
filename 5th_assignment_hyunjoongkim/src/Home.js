@@ -184,15 +184,17 @@ function Home() {
             </MobileRow2>
           </MobileMain>
           <MobileLowRow>
-            {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
-            <MobileHomeButton>
-              <img
-                src={process.env.PUBLIC_URL + "/home.svg"}
-                alt="홈 로고"
-                width="17vw"
-                onClick={home}
-              />
-            </MobileHomeButton>
+            {/*하단에 위치한 메뉴 아이콘과 프로필 아이콘을 배치*/}
+            <div>
+              <MobileHomeButton>
+                <img
+                  src={process.env.PUBLIC_URL + "/home.svg"}
+                  alt="홈 로고"
+                  width="17vw"
+                  onClick={home}
+                />
+              </MobileHomeButton>
+            </div>
             <MobileLow>
               <img
                 src={process.env.PUBLIC_URL + "/NewPosts.svg"}
@@ -521,9 +523,8 @@ const MobileMenuDiv = styled.div`
   //메뉴 아이콘 오른쪽 정렬 및 여백 조절
   padding-top: 0.4em;
   padding-bottom: 0.3em;
-  height: auto;
   position: absolute; //메뉴 아이콘을 absolute로 변경하여 인스타그램 로고 아이콘과 같은 비율로 오른쪽으로부터 간격 띄움
-  right: 32%;
+  right: 27%;
 `;
 const MobileLogoDiv = styled.div`
   //인스타그램 로고 아이콘 왼쪽정렬 및 여백 조절
@@ -548,7 +549,7 @@ const MobileActivityButton = styled.button`
   //액티비티 버튼
   background-color: white;
   border: solid white;
-  margin-left: 350%;
+  margin-left: 250%;
 `;
 const MobileProfileImage = styled.img`
   //메뉴 아이콘 옆에 위치한 동그란 프로필 사진 설정 및 배치
@@ -568,18 +569,15 @@ const MobileSearch = styled.div`
   border-radius: 3px;
   border: 1px solid var(--Border-Color, #dbdbdb);
   background: #efefef;
-  margin-left: 17%;
+  margin-left: 15%;
   color: #8e8e8e;
 `;
 
 const MobileLow = styled.div`
-  display: flex;
-  width: 5%;
   padding: 4px 72px 4px 71px;
-  justify-content: center;
+  margin-left: 20%;
   align-items: center;
   border-radius: 3px;
-  margin-left: 15%;
   color: #8e8e8e;
 `;
 
