@@ -20,8 +20,7 @@ function App() {
       try {
         //axios를 사용하여 서버에 POST 요청 전송
         const response = await axios.get(
-          "http://3.35.236.83/pard/search/김현중",
-          data
+          "http://3.35.236.83/pard/search/김현중"
         );
         //성공일 때 서버에서 받은 데이터를 로깅
         console.log("API Response: ", response.data);
