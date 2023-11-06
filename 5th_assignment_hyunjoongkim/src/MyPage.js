@@ -7,7 +7,7 @@ import HomeContext from "./HomeContext";
 
 function MyPage() {
   // Context를 사용하여 App.js에 정의한 provider의 value를 전역 상태로 관리
-  const { profileData } = useContext(HomeContext);
+  const { data } = useContext(HomeContext);
   const navigate = useNavigate();
   const home = () => {
     navigate("/Home");
@@ -52,15 +52,13 @@ function MyPage() {
             />
           </ActivityButton>
           <ProfileImage
-            src={
-              profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
-            }
+            src={data.imgURL}
             alt="프로필 이미지"
             onClick={profile}
           />
         </MenuDiv>
       </Row1>
-      <Profile profileData={profileData} />
+      <Profile data={data} />
       <Post />
     </div>
   );

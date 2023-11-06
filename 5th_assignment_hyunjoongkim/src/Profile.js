@@ -5,7 +5,7 @@ import HomeContext from "./HomeContext";
 
 function Profile() {
   // Context를 사용하여 App.js에 정의한 provider의 value를 전역 상태로 관리
-  const { profileData } = useContext(HomeContext);
+  const { data } = useContext(HomeContext);
   const navigate = useNavigate();
   const gotoEditProfile = () => {
     navigate("/EditProfile");
@@ -13,16 +13,11 @@ function Profile() {
   return (
     <Row2>
       <Column1>
-        <ProfileImage
-          src={
-            profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
-          }
-          alt="프로필 이미지"
-        />
+        <ProfileImage src={data.imgURL} alt="프로필 이미지" />
       </Column1>
       <Column2>
         <InnerRow1>
-          <NickName>{profileData.nickname}</NickName>
+          <NickName>{data.name}</NickName>
           <ButtonProfile onClick={gotoEditProfile}>프로필 편집</ButtonProfile>
           <OptionButton>
             <img
@@ -32,7 +27,6 @@ function Profile() {
             />
           </OptionButton>
         </InnerRow1>
-
         <InnerRow2>
           <ButtonPost>게시물 3</ButtonPost>
           <ButtonFollower>팔로워 500</ButtonFollower>
@@ -98,8 +92,7 @@ const ButtonProfile = styled.button`
   background-color: white;
   border-radius: 4px;
   border: 1px #dbdbdb solid;
-  position: relative;
-  left: 5%;
+  margin-left: 10%;
   cursor: pointer;
 `;
 
@@ -118,6 +111,7 @@ const OptionButton = styled.button`
 const NickName = styled.div`
   //닉네임 설정
   font-size: 25px;
+  width: 65%;
 `;
 
 const ButtonPost = styled.button`
@@ -125,7 +119,7 @@ const ButtonPost = styled.button`
   background-color: white;
   border: white;
   font-size: 16px;
-  width: 60%;
+  width: 90px;
   text-align: left;
   padding-left: 0;
 `;
@@ -135,9 +129,8 @@ const ButtonFollower = styled.button`
   background-color: white;
   border: white;
   font-size: 16px;
-  width: 70%;
+  width: 50%;
   text-align: left;
-  padding-left: 0;
 `;
 
 const ButtonFollowing = styled.button`
@@ -145,9 +138,8 @@ const ButtonFollowing = styled.button`
   background-color: white;
   border: white;
   font-size: 16px;
-  width: 70%;
+  width: 50%;
   text-align: left;
-  padding-left: 0;
 `;
 
 export default Profile;

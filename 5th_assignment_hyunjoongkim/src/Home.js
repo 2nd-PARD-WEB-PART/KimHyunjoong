@@ -13,7 +13,7 @@ function Home() {
     setLikeCount,
     commentsList,
     setCommentsList,
-    profileData,
+    data,
   } = useContext(HomeContext);
 
   const navigate = useNavigate();
@@ -154,8 +154,7 @@ function Home() {
                     {/* 사용자가 추가한 댓글 출력 */}
                     {commentsList.map((item, index) => (
                       <tr key={index}>
-                        <td>{profileData.nickname}</td>{" "}
-                        {/* 프로필 닉네임 출력 */}
+                        <td>{data.name}</td> {/* 프로필 닉네임 출력 */}
                         <td>{item}</td> {/* 해당 댓글 내용 출력 */}
                       </tr>
                     ))}
@@ -204,10 +203,7 @@ function Home() {
             </MobileLow>
             <MobileMenuDiv>
               <MobileProfileImage
-                src={
-                  profileData.profileImg ||
-                  process.env.PUBLIC_URL + "/profile.jpg"
-                }
+                src={data.imgURL}
                 alt="프로필 이미지"
                 onClick={profile}
               />
@@ -252,10 +248,7 @@ function Home() {
                 />
               </ActivityButton>
               <ProfileImage
-                src={
-                  profileData.profileImg ||
-                  process.env.PUBLIC_URL + "/profile.jpg"
-                }
+                src={data.imgURL}
                 alt="프로필 이미지"
                 onClick={profile}
               />
@@ -263,14 +256,8 @@ function Home() {
           </MainRow>
           <Main>
             <Row1>
-              <ProfileImageExtra
-                src={
-                  profileData.profileImg ||
-                  process.env.PUBLIC_URL + "/profile.jpg"
-                }
-                alt="프로필 이미지"
-              />
-              <NickName>{profileData.nickname}</NickName>
+              <ProfileImageExtra src={data.imgURL} alt="프로필 이미지" />
+              <NickName>{data.name}</NickName>
             </Row1>
             <Row2>
               <InnerRow1>
@@ -338,8 +325,7 @@ function Home() {
                     {/* 사용자가 추가한 댓글 출력 */}
                     {commentsList.map((item, index) => (
                       <tr key={index}>
-                        <td>{profileData.nickname}</td>{" "}
-                        {/* 프로필 닉네임 출력 */}
+                        <td>{data.name}</td> {/* 프로필 닉네임 출력 */}
                         <td>{item}</td> {/* 해당 댓글 내용 출력 */}
                       </tr>
                     ))}
@@ -403,10 +389,7 @@ function Home() {
                 />
               </TabletActivityButton>
               <TabletProfileImage
-                src={
-                  profileData.profileImg ||
-                  process.env.PUBLIC_URL + "/profile.jpg"
-                }
+                src={data.imgURL}
                 alt="프로필 이미지"
                 onClick={profile}
               />
@@ -479,8 +462,7 @@ function Home() {
                     {/* 사용자가 추가한 댓글 출력 */}
                     {commentsList.map((item, index) => (
                       <tr key={index}>
-                        <td>{profileData.nickname}</td>{" "}
-                        {/* 프로필 닉네임 출력 */}
+                        <td>{data.name}</td> {/* 프로필 닉네임 출력 */}
                         <td>{item}</td> {/* 해당 댓글 내용 출력 */}
                       </tr>
                     ))}

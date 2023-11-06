@@ -2,10 +2,11 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import HomeContext from "./HomeContext";
+import axios from "axios";
 
 function EditProfile() {
   // Context를 사용하여 App.js에 정의한 provider의 value들을 전역 상태로 관리
-  const { profileData, setProfileData } = useContext(HomeContext);
+  const { data, setData } = useContext(HomeContext);
   const navigate = useNavigate();
   const home = () => {
     navigate("/Home");
@@ -16,45 +17,75 @@ function EditProfile() {
   };
 
   const [isFormChanged, setIsFormChanged] = useState(false);
+  const [initImgURL] = useState(data.imgURL); //초기 프로필 사진 상태 저장
+  const [initName] = useState(data.name);
+  const [initAge] = useState(data.age);
+  const [initPart] = useState(data.part);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
+    const newData = { ...data, [id]: value };
 
-    switch (id) {
-      case "nameInput":
-        setIsFormChanged(value !== profileData.name);
-        break;
-      case "ageInput":
-        setIsFormChanged(value !== profileData.age);
-        break;
-      case "partInput":
-        setIsFormChanged(value !== profileData.part);
-        break;
-      case "imgInput":
-        setIsFormChanged(value !== profileData.imgURL);
-        break;
-      default:
+    setIsFormChanged(
+      newData.name !== initName ||
+        newData.age !== initAge ||
+        newData.part !== initPart ||
+        newData.imgURL !== data.imgURL ||
+        newData.imgURL !== initImgURL
+    );
+  };
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0]; //선택한 파일 가져오기
+    const reader = new FileReader(); //파일을 읽기 위한 객체 생성
+
+    reader.onloadend = () => {
+      // 파일의 base 64 표현을 가져옴
+      const base64Image = reader.result;
+
+      // 새로운 imgURL로 상태를 업데이트
+      setData((prevState) => ({ ...prevState, imgURL: base64Image }));
+
+      // imgURL이 변경되면 isFormChanged를 true로
+      setIsFormChanged(base64Image !== initImgURL);
+    };
+
+    //파일이 있으면, 해당 파일의 데이터를 URL 형식으로 읽기
+    if (file) {
+      reader.readAsDataURL(file);
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    //상태 업데이트
+    const newName = event.target.elements.name.value;
+    const newAge = event.target.elements.age.value;
+    const newPart = event.target.elements.part.value;
+    const newImg = data.imgURL;
 
-    const newNickname = event.target.elements.nameInput.value;
-    const newAge = event.target.elements.ageInput.value;
-    const newPart = event.target.elements.partInput.value;
-    const newImg = event.target.elements.imgInput.value;
-
-    setProfileData((prevState) => ({
+    setData((prevState) => ({
       ...prevState,
-      nickname: newNickname,
+      name: newName,
       age: newAge,
       part: newPart,
       imgURL: newImg,
     }));
 
-    navigate("/");
-    setIsFormChanged(false);
+    const url = "http://3.35.236.83/pard/update/김현중"; //파도타는사람들 중 한 명인 김현중 사용자의 수정된 data 값 업데이트
+
+    axios
+      .patch(url, data)
+      .then((response) => {
+        //성공하면 콘솔에 출력
+        console.log("PATCH response:", response.data);
+        navigate("/");
+        setIsFormChanged(false);
+      })
+      .catch((error) => {
+        // 실패하면 오류를 출력
+        console.log(error);
+      });
   };
 
   return (
@@ -93,7 +124,7 @@ function EditProfile() {
             />
           </ActivityButton>
           <ProfileImage
-            src={profileData.imgURL}
+            src={data.imgURL}
             alt="프로필 이미지"
             onClick={profile}
           />
@@ -131,21 +162,20 @@ function EditProfile() {
         <Column2>
           <FormRow1>
             <FormImage>
-              <FormProfileImage src={profileData.imgURL} alt="프로필 이미지" />
+              <FormProfileImage src={data.imgURL} alt="프로필 이미지" />
             </FormImage>
             <FormProfileDiv>
               <div>
-                <h3>{profileData.name}</h3>
+                <h3>{data.name}</h3>
               </div>
               <File>
                 <FileButton
                   type="file"
                   accept="image/*"
-                  id="profileChange"
-                  display="none"
-                  onChange={handleInputChange}
+                  onChange={handleImageSelect}
+                  id="fileID"
                 />
-                <FileButtonLabel for="profileChange">
+                <FileButtonLabel for="fileID">
                   프로필 사진 바꾸기
                 </FileButtonLabel>
               </File>
@@ -154,32 +184,32 @@ function EditProfile() {
           <FormRow2>
             <FormInnerColumn1>
               <form>
-                <StyledLabel htmlFor="nameInput">사용자 이름</StyledLabel>
+                <StyledLabel htmlFor="name">사용자 이름</StyledLabel>
                 <br></br>
-                <StyledLabel htmlFor="ageInput">나이</StyledLabel>
+                <StyledLabel htmlFor="age">나이</StyledLabel>
                 <br></br>
-                <StyledLabel htmlFor="partInput">파트</StyledLabel>
+                <StyledLabel htmlFor="part">파트</StyledLabel>
               </form>
             </FormInnerColumn1>
             <FormInnerColumn2>
               <form onSubmit={handleSubmit}>
                 <StyledInput
                   type="text"
-                  id="nameInput"
-                  defaultValue={profileData.name}
+                  id="name"
+                  defaultValue={data.name}
                   onChange={handleInputChange}
                 />
                 <br></br>
                 <StyledInput
-                  id="ageInput"
-                  defaultValue={profileData.age}
+                  id="age"
+                  defaultValue={data.age}
                   onChange={handleInputChange}
                 />
                 <br></br>
                 <StyledInput
                   type="text"
-                  id="partInput"
-                  defaultValue={profileData.part}
+                  id="part"
+                  defaultValue={data.part}
                   onChange={handleInputChange}
                 />
                 <br></br>
@@ -397,6 +427,7 @@ const FileButtonLabel = styled.label`
   color: #0095f6;
   font-weight: 500;
   font-size: 14px;
+  for: "fileID";
 `;
 
 const FormButton = styled.button`
