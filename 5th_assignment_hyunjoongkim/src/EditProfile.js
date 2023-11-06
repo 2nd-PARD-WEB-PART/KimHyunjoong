@@ -21,10 +21,11 @@ function EditProfile() {
   const [initName] = useState(data.name);
   const [initAge] = useState(data.age);
   const [initPart] = useState(data.part);
+  const [uploadedImgURL, setUploadedImgURL] = useState(null);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
-    const newData = { ...data, [id]: value };
+    const newData = { ...data, [id]: id === "age" ? Number(value) : value };
 
     setIsFormChanged(
       newData.name !== initName ||
@@ -35,24 +36,29 @@ function EditProfile() {
     );
   };
 
-  const handleImageSelect = (event) => {
-    const file = event.target.files[0]; //선택한 파일 가져오기
-    const reader = new FileReader(); //파일을 읽기 위한 객체 생성
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
 
-    reader.onloadend = () => {
-      // 파일의 base 64 표현을 가져옴
-      const base64Image = reader.result;
+    const response = await axios.post("http://3.35.236.83/image", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    setUploadedImgURL(response.data);
+  };
+
+  const handleImageSelect = async (event) => {
+    const file = event.target.files[0]; //선택한 파일 가져오기
+
+    if (file) {
+      const newImgURL = await uploadImage(file);
 
       // 새로운 imgURL로 상태를 업데이트
-      setData((prevState) => ({ ...prevState, imgURL: base64Image }));
+      setData((prevState) => ({ ...prevState, imgURL: newImgURL }));
 
       // imgURL이 변경되면 isFormChanged를 true로
-      setIsFormChanged(base64Image !== initImgURL);
-    };
-
-    //파일이 있으면, 해당 파일의 데이터를 URL 형식으로 읽기
-    if (file) {
-      reader.readAsDataURL(file);
+      setIsFormChanged(newImgURL !== initImgURL);
     }
   };
 
@@ -62,7 +68,7 @@ function EditProfile() {
     const newName = event.target.elements.name.value;
     const newAge = event.target.elements.age.value;
     const newPart = event.target.elements.part.value;
-    const newImg = data.imgURL;
+    const newImg = uploadedImgURL ? uploadedImgURL : data.imgURL;
 
     setData((prevState) => ({
       ...prevState,
@@ -72,10 +78,18 @@ function EditProfile() {
       imgURL: newImg,
     }));
 
+    const updatedData = {
+      ...data,
+      name: newName,
+      age: newAge,
+      part: newPart,
+      imgURL: newImg,
+    };
+
     const url = "http://3.35.236.83/pard/update/김현중"; //파도타는사람들 중 한 명인 김현중 사용자의 수정된 data 값 업데이트
 
     axios
-      .patch(url, data)
+      .patch(url, updatedData)
       .then((response) => {
         //성공하면 콘솔에 출력
         console.log("PATCH response:", response.data);
@@ -427,7 +441,6 @@ const FileButtonLabel = styled.label`
   color: #0095f6;
   font-weight: 500;
   font-size: 14px;
-  for: "fileID";
 `;
 
 const FormButton = styled.button`
