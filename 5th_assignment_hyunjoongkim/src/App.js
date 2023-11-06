@@ -7,12 +7,7 @@ import HomeContext from "./HomeContext"; //생성한 Context 불러오기
 import axios from "axios"; //axios를 프로젝트에 사용하기 위해 import
 
 function App() {
-  const [data, setData] = useState({
-    name: "",
-    age: "",
-    part: "",
-    imgURL: "",
-  });
+  const [data, setData] = useState({});
 
   //useEffect를 사용하여 데이터를 가져오는 비동기 함수를 정의
   useEffect(() => {
