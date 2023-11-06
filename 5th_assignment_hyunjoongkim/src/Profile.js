@@ -38,8 +38,7 @@ function Profile() {
           <ButtonFollower>팔로워 500</ButtonFollower>
           <ButtonFollowing>팔로워 500</ButtonFollowing>
         </InnerRow2>
-
-        <InnerRow3>{profileData.intro}</InnerRow3>
+        <InnerRow3>Paypal</InnerRow3>
       </Column2>
     </Row2>
   );
@@ -80,6 +79,7 @@ const InnerRow3 = styled.div`
   display: block;
   font-size: 16px;
   margin-top: 18px;
+  background-color: white;
 `;
 
 const ProfileImage = styled.img`

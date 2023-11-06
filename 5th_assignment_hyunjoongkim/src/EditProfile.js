@@ -25,17 +25,11 @@ function EditProfile() {
       case "nameInput":
         setIsFormChanged(value !== profileData.nickname);
         break;
-      case "introInput":
-        setIsFormChanged(value !== profileData.intro);
+      case "ageInput":
+        setIsFormChanged(value !== profileData.age);
         break;
-      case "webInput":
-        setIsFormChanged(value !== profileData.web);
-        break;
-      case "emailInput":
-        setIsFormChanged(value !== profileData.email);
-        break;
-      case "genderInput":
-        setIsFormChanged(value !== profileData.gender);
+      case "partInput":
+        setIsFormChanged(value !== profileData.part);
         break;
       default:
     }
@@ -46,18 +40,14 @@ function EditProfile() {
     event.preventDefault();
 
     const newNickname = event.target.elements.nameInput.value;
-    const newIntro = event.target.elements.introInput.value;
-    const newWeb = event.target.elements.webInput.value;
-    const newEmail = event.target.elements.emailInput.value;
-    const newGender = event.target.elements.genderInput.value;
+    const newAge = event.target.elements.ageInput.value;
+    const newPart = event.target.elements.partInput.value;
 
     setProfileData((prevState) => ({
       ...prevState,
       nickname: newNickname,
-      intro: newIntro,
-      web: newWeb,
-      email: newEmail,
-      gender: newGender,
+      age: newAge,
+      part: newPart,
     }));
 
     navigate("/");
@@ -205,13 +195,9 @@ function EditProfile() {
               <form>
                 <StyledLabel htmlFor="nameInput">사용자 이름</StyledLabel>
                 <br></br>
-                <IntroLabel htmlFor="introInput">소개</IntroLabel>
+                <StyledLabel htmlFor="ageInput">나이</StyledLabel>
                 <br></br>
-                <StyledLabel htmlFor="webInput">웹사이트</StyledLabel>
-                <br></br>
-                <StyledLabel htmlFor="emailInput">이메일</StyledLabel>
-                <br></br>
-                <StyledLabel htmlFor="genderInput">성별</StyledLabel>
+                <StyledLabel htmlFor="partInput">파트</StyledLabel>
               </form>
             </FormInnerColumn1>
             <FormInnerColumn2>
@@ -223,32 +209,27 @@ function EditProfile() {
                   onChange={handleInputChange}
                 />
                 <br></br>
-                <IntroInput
-                  id="introInput"
-                  defaultValue={profileData.intro}
+                <StyledInput
+                  id="ageInput"
+                  defaultValue={profileData.age}
                   onChange={handleInputChange}
                 />
                 <br></br>
                 <StyledInput
                   type="text"
-                  id="webInput"
-                  defaultValue={profileData.web}
+                  id="partInput"
+                  defaultValue={profileData.part}
                   onChange={handleInputChange}
                 />
                 <br></br>
-                <StyledInput
-                  type="text"
-                  id="emailInput"
-                  defaultValue={profileData.email}
-                  onChange={handleInputChange}
-                />
                 <br></br>
-                <StyledInput
-                  type="text"
-                  id="genderInput"
-                  defaultValue={profileData.gender}
-                  onChange={handleInputChange}
-                />
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
                 <br></br>
                 <FormButton
                   type="submit"
@@ -472,11 +453,7 @@ const FormButton = styled.button`
 // Label styled components
 const StyledLabel = styled.label`
   display: block;
-  margin-bottom: 30px;
-`;
-const IntroLabel = styled.label`
-  display: block;
-  margin-bottom: 56px;
+  margin-bottom: 29px;
 `;
 
 // Input styled components
@@ -486,16 +463,6 @@ const StyledInput = styled.input`
   border: 1px #efefef solid;
   width: 70%;
   margin-bottom: 30px;
-`;
-
-const IntroInput = styled.textarea`
-  display: block;
-  border-radius: 2px;
-  border: 1px #efefef solid;
-  width: 70%;
-  height: 40px;
-  margin-bottom: 33px;
-  resize: none;
 `;
 
 export default EditProfile;

@@ -8,10 +8,8 @@ import HomeContext from "./HomeContext"; //생성한 Context 불러오기
 function App() {
   const [profileData, setProfileData] = useState({
     nickname: "bbin_guuuu",
-    intro: "Paypal",
-    web: "https://github.com/hjkim0905",
-    email: "eax9952@gmail.com",
-    gender: "Male",
+    age: "25",
+    part: "Web",
   });
 
   // likeStatus, likeCount, commentsList 초기 상태 선언
