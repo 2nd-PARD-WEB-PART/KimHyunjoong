@@ -7,9 +7,10 @@ import HomeContext from "./HomeContext"; //생성한 Context 불러오기
 
 function App() {
   const [profileData, setProfileData] = useState({
-    nickname: "bbin_guuuu",
+    name: "bbin_guuuu",
     age: "25",
     part: "Web",
+    imgURL: "https://pardprofile.s3.ap-northeast-2.amazonaws.com/profile.JPG",
   });
 
   // likeStatus, likeCount, commentsList 초기 상태 선언

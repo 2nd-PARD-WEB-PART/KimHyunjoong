@@ -16,14 +16,13 @@ function EditProfile() {
   };
 
   const [isFormChanged, setIsFormChanged] = useState(false);
-  const [newProfileImg, setNewProfileImg] = useState(null);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
 
     switch (id) {
       case "nameInput":
-        setIsFormChanged(value !== profileData.nickname);
+        setIsFormChanged(value !== profileData.name);
         break;
       case "ageInput":
         setIsFormChanged(value !== profileData.age);
@@ -31,9 +30,11 @@ function EditProfile() {
       case "partInput":
         setIsFormChanged(value !== profileData.part);
         break;
+      case "imgInput":
+        setIsFormChanged(value !== profileData.imgURL);
+        break;
       default:
     }
-    if (newProfileImg) setIsFormChanged(true);
   };
 
   const handleSubmit = (event) => {
@@ -42,54 +43,23 @@ function EditProfile() {
     const newNickname = event.target.elements.nameInput.value;
     const newAge = event.target.elements.ageInput.value;
     const newPart = event.target.elements.partInput.value;
+    const newImg = event.target.elements.imgInput.value;
 
     setProfileData((prevState) => ({
       ...prevState,
       nickname: newNickname,
       age: newAge,
       part: newPart,
+      imgURL: newImg,
     }));
 
     navigate("/");
     setIsFormChanged(false);
-
-    if (newProfileImg) {
-      setProfileData((prevState) => ({
-        ...prevState,
-        profileImg: newProfileImg,
-      }));
-
-      setNewProfileImg(null);
-    }
-
-    setIsFormChanged(false);
-  };
-
-  const changeProfileImage = (event) => {
-    let fileReader = new FileReader();
-
-    fileReader.onloadend = () => {
-      let dataUrl = fileReader.result;
-      setNewProfileImg(dataUrl);
-
-      if (dataUrl === profileData.profileImg) {
-        setIsFormChanged(false);
-      } else {
-        setIsFormChanged(true);
-      }
-    };
-
-    let file = event.target.files[0];
-
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
   };
 
   return (
     <div>
       <Row1>
-        {" "}
         {/*상단에 위치한 로고와 메뉴 아이콘, 그리고 프로필 아이콘을 배치*/}
         <LogoDiv>
           <img
@@ -123,9 +93,7 @@ function EditProfile() {
             />
           </ActivityButton>
           <ProfileImage
-            src={
-              profileData.profileImg || process.env.PUBLIC_URL + "/profile.jpg"
-            }
+            src={profileData.imgURL}
             alt="프로필 이미지"
             onClick={profile}
           />
@@ -163,18 +131,11 @@ function EditProfile() {
         <Column2>
           <FormRow1>
             <FormImage>
-              <FormProfileImage
-                src={
-                  newProfileImg ||
-                  profileData.profileImg ||
-                  process.env.PUBLIC_URL + "/profile.jpg"
-                }
-                alt="프로필 이미지"
-              />
+              <FormProfileImage src={profileData.imgURL} alt="프로필 이미지" />
             </FormImage>
             <FormProfileDiv>
               <div>
-                <h3>{profileData.nickname}</h3>
+                <h3>{profileData.name}</h3>
               </div>
               <File>
                 <FileButton
@@ -182,7 +143,7 @@ function EditProfile() {
                   accept="image/*"
                   id="profileChange"
                   display="none"
-                  onChange={changeProfileImage}
+                  onChange={handleInputChange}
                 />
                 <FileButtonLabel for="profileChange">
                   프로필 사진 바꾸기
@@ -205,7 +166,7 @@ function EditProfile() {
                 <StyledInput
                   type="text"
                   id="nameInput"
-                  defaultValue={profileData.nickname}
+                  defaultValue={profileData.name}
                   onChange={handleInputChange}
                 />
                 <br></br>
