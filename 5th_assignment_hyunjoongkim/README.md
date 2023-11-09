@@ -1,4 +1,5 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&text=instagram_clone_coding&animation=blinking&fontColor=FFFFFF)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Architects+Daughter&color=80ed99&size=20&lines=Hello,+I+am+a+react+developer!;I+really+like+programming~!;So+i+want+to+develop+everyday!!;And+I'm+a+proud+GitHub+user)](https://git.io/typing-svg)
 
 # 인스타그램 클론 코딩
 ### 1. Project Description
